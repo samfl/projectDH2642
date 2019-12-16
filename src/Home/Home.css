@@ -6,7 +6,7 @@
     font-family: Title;
     font-size: 25vw;
     color: white;
-    transition: all .5s linear;
+    transition: all 1s linear;
 }
 .Home{
     background-color: black;
@@ -23,13 +23,12 @@
 }
 #home-signUp{
     color: blue;
-    font-size: 50px;
+    font-size: 40px;
 }
 #home-signUp-info{
-    display: none;
     color: white;
     opacity: 0;
-    transition: opacity .5s linear;
+    transition: opacity 2s ease-in;
     font-size: 40px;
 }
 .home-input{
