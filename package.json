@@ -1,10 +1,10 @@
 {
-  "name": "projectDH2642",
+  "name": "projectdh2642",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
   },
@@ -13,5 +13,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehanstad/projectDH2642.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ehanstad/projectDH2642/issues"
+  },
+  "homepage": "https://github.com/ehanstad/projectDH2642#readme"
 }
