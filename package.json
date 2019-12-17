@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js", 
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -22,7 +22,8 @@
   "homepage": "https://github.com/ehanstad/projectDH2642#readme",
   "dependencies": {
     "concurrently": "^5.0.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
