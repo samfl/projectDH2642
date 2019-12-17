@@ -1,6 +1,6 @@
 @font-face {
     font-family: Title;
-    src:url(../fonts/kanit.thin.ttf);
+    src:url(../../fonts/kanit.thin.ttf);
 }
 #home-title{
     font-family: Title;
