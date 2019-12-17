@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Home from "./components/home/home";
-import Login from "./components/login/login";
-import Registration from "./components/registration/registration";
+import Login from "./components/logIn/logIn";
+import Registration from "./components/signUp/signUp";
 
 import "./App.css";
 

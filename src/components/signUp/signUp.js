@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./registration.css";
+import "./signUp.css";
 
 class Registration extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Registration extends Component {
     componentDidMount() { }
     componentWillUnmount() { }
 
-    handleReg = (event) => {
+    handleSignUp = (event) => {
         event.preventDefault(); 
         alert("New Username: " + event.target.usern.value + " New Password: " + event.target.passw.value);
     }
@@ -22,12 +22,12 @@ class Registration extends Component {
         return (
             <div>
                 <div>
-                    <h3>Create New User</h3> 
-                    <form onSubmit={this.handleReg}>  
+                    <h3>Sign up</h3> 
+                    <form onSubmit={this.handleSignUp}>  
                         <label>User name</label>
                         <input type="text" placeholder="Enter Username" name="usern" required></input>
                         <label>Password</label>
-                        <input type="text" placeholder="Enter Password" name="passw" required></input>
+                        <input type="password" placeholder="Enter Password" name="passw" required></input>
                         <button type="submit">Register</button>
                     </form>
                 </div>

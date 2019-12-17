@@ -2,23 +2,23 @@
     font-family: Title;
     src:url(../../fonts/kanit.thin.ttf);
 }
-#home-title{
-    font-family: Title;
-    font-size: 25vw;
-    color: white;
-    transition: all 1s linear;
-}
-.Home{
-    background-color: black;
+.wrapper{
+    background-color: white;
     height: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
+#home-title{
+    font-family: Title;
+    font-size: 25vw;
+    color: black;
+    transition: all 1s linear;
+}
 #home-buttons{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 40%;
 }
 #home-signUp{
@@ -26,6 +26,12 @@
     font-size: 40px;
 }
 #home-signUp-info{
+    color: white;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+    font-size: 40px;
+}
+#home-logIn-info{
     color: white;
     opacity: 0;
     transition: opacity 2s ease-in;
