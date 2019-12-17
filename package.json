@@ -1,21 +1,15 @@
 {
   "name": "projectdh2642",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js", 
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ehanstad/projectDH2642.git"
@@ -25,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/ehanstad/projectDH2642/issues"
   },
-  "homepage": "https://github.com/ehanstad/projectDH2642#readme"
+  "homepage": "https://github.com/ehanstad/projectDH2642#readme",
+  "dependencies": {
+    "concurrently": "^5.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }

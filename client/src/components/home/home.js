@@ -57,11 +57,9 @@ class Home extends Component {
             form: 'signUp'
         });
     }
-
     */
 
     /*
-
     logIn = e => {
         let home = e.target.parentElement.parentElement;
         let title = e.target.parentElement.parentElement.firstElementChild;
@@ -74,7 +72,6 @@ class Home extends Component {
             form: 'logIn'
         });
     }
-
     */
 }
 
