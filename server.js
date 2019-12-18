@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const express = require('express');
 const app = express(); 
 
 const User = require('./models/user');
 const users = require('./routes/users');
+
+app.use(bodyParser.json());
 
 // Create-react-app default: 3000 ...
 const port = process.env.PORT || 5000; 
@@ -19,7 +22,7 @@ mongoose
     .catch(err => console.log(err));
 
 // Use routes
-app.use('/items', users);
+app.use('/users', users);
 
 // Just a test
 app.get('/', (req, res) => {
