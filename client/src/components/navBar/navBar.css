@@ -1,0 +1,8 @@
+.navBar{
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 3%;
+    font-size: 45px;
+}
