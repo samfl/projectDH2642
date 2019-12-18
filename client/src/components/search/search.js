@@ -11,17 +11,7 @@ class Search extends Component{
 
     componentDidMount() {
         this.props.model.addObserver(this);
-
-        this.props.model.searchTeams().then(teams => {
-            this.setState({
-                status: "LOADED",
-                teams: teams.teams
-            })
-        }).catch(() => {
-            this.setState({
-                status: "ERROR"
-            });
-        });
+        this.updateSearch();
     }
     componentWillUnmount() {
         this.props.model.removeObserver(this);
@@ -36,7 +26,11 @@ class Search extends Component{
                 break;
             case "LOADED":
                 teamList = this.state.teams.map(team =>(
-                    <div>{team.name}</div>
+                    <div>
+                        <img className={"search-img"} src={team.crestUrl}/>
+                        {team.name}
+                        <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
+                    </div>
                 ));
                 break;
             default:
@@ -62,20 +56,23 @@ class Search extends Component{
                 </div>;
     }
     onSearchChange = e => {
-        this.props.model.setQuery(e.target.parentElement.firstElementChild.nextElementSibling.value);
+        this.props.model.setQuery(e.target.parentElement.firstElementChild.value);
     };
     leagueSelected = e => {
         this.props.model.setSelectedLeague(e.target.value)
     };
     update() {
-        this.setState({
-            league: this.props.model.getSelectedLeague()
-        });
-        console.log(this.state.league);
-        this.props.model.searchTeams(this.props.model.getSelectedLeague()).then(teams => {
+        this.updateSearch();
+    }
+    addClickedTeam = e => {
+        this.props.model.addTeam(JSON.parse(e.target.value));
+    };
+
+    updateSearch(){
+        this.props.model.searchTeams(this.props.model.getSelectedLeague(), this.props.model.getQuery()).then(teams => {
             this.setState({
                 status: "LOADED",
-                teams: teams.teams
+                teams: teams
             })
         }).catch(() => {
             this.setState({
