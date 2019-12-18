@@ -1,5 +1,5 @@
 import Observable from "./observable";
-import * as config from "../config";
+import * as config from "../apiConfig/apiConfig";
 
 class Model extends Observable{
     constructor(){
@@ -42,9 +42,10 @@ class Model extends Observable{
     /** API METHODS **/
 
     searchTeams(league = '', team = ''){
-        console.log();
         const url = `${config.BASE_URL}${league}/teams`
-        return fetch(url, config.httpOptions).then(this.processResponse);
+        return fetch(url, config.httpOptions).then(this.processResponse).then(results =>{
+            return results.teams.filter(teams => teams.name.toUpperCase().includes(team.toUpperCase()));
+        });
     }
 
     processResponse(response) {
