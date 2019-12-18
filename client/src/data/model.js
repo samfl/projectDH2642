@@ -5,12 +5,21 @@ class Model extends Observable{
     constructor(){
         super();
         this.favTeams = [];
-        this.currentTeam = null;
+        this.focusedTeam = null;
         this.query = '';
         this.selectedLeague = '';
     }
 
     /** MODEL METHODS **/
+    getFocusedTeam() {
+        return this.focusedTeam;
+    }
+
+    setFocusedTeam(focusedTeam) {
+        this.focusedTeam = focusedTeam;
+        this.notifyObservers();
+    }
+
     getQuery(){
         return this.query;
     }
@@ -29,6 +38,9 @@ class Model extends Observable{
         this.notifyObservers();
     }
 
+    getFavTeam(){
+        return this.favTeams;
+    }
     addTeam(newTeam){
         this.favTeams = this.favTeams.filter(team => team.id != newTeam.id);
         this.favTeams.push(newTeam);

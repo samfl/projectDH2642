@@ -4,6 +4,7 @@ import Home from "./components/home/home";
 import Search from "./components/search/search";
 import Login from "./components/logIn/logIn";
 import Registration from "./components/signUp/signUp";
+import SelectTeams from "./components/selectTeams/selectTeams";
 import modelInstance from "./data/model";
 import "./App.css";
 
@@ -21,7 +22,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/registration" component={Registration} />
-                <Route exact path="/search" render={() => <Search model={modelInstance} />}/>
+                <Route exact path="/search" render={() => <SelectTeams model={modelInstance} />}/>
             </div>
         );
     }
