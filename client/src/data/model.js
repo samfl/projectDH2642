@@ -18,9 +18,18 @@ class Model extends Observable{
         };
         this.query = '';
         this.selectedLeague = '';
+        this.selectedSeason = '2019';
     }
 
     /** MODEL METHODS **/
+    setSelectedSeason(season){
+        this.selectedSeason = season;
+        this.notifyObservers();
+    }
+
+    getSelectedSeason(){
+        return this.selectedSeason;
+    }
     getFocusedTeam() {
         return this.focusedTeam;
     }
@@ -73,12 +82,17 @@ class Model extends Observable{
         });
     }
 
-    getSchedule(){
-        const url = `${config.BASE_URL}/competitions/${leagues[this.getFocusedTeam().country]}/matches`;
-        console.log(this.getFocusedTeam().teamName);
+    getSchedule(season = ''){
+        const url = `${config.BASE_URL}/competitions/${leagues[this.getFocusedTeam().country]}/matches?season=${season}`;
         return fetch(url, config.httpOptions).then(this.processResponse).then(results =>{
             return results.matches.filter(matches => matches.homeTeam.name.includes(this.getFocusedTeam().teamName) || matches.awayTeam.name.includes(this.getFocusedTeam().teamName));
         });
+    }
+
+    /* statType can be either standings, matches or scorers */
+    getSeasonStats(statType,season = ''){
+        const url = `${config.BASE_URL}/competitions/${leagues[this.getFocusedTeam().country]}/${statType}?season=${season}`;
+        return fetch(url, config.httpOptions).then(this.processResponse);
     }
 
     processResponse(response) {

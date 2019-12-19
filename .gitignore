@@ -1,6 +1,8 @@
+.gitignore
 /client/node_modules
 /node_modules
 /config
 /client/config
 /client/src/config.js
 /client/src/apiConfig
+.idea

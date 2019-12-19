@@ -1,0 +1,7 @@
+.sidebar-team{
+    outline: none;
+    margin: 2px;
+}
+.sidebar-team:focus{
+    background-color: blue;
+}

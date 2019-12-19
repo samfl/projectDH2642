@@ -23,7 +23,10 @@ class Search extends Component{
 
         switch (this.state.status) {
             case "LOADING":
-                teamList = <em>Loading...</em>
+                teamList = (
+                    <div className={"loader-wrapper"}>
+                    <div className={"loader"}></div>
+                </div>)
                 break;
             case "LOADED":
                 teamList = this.state.teams.map(team =>(
@@ -57,9 +60,15 @@ class Search extends Component{
                 </div>;
     }
     onSearchChange = e => {
+        this.setState({
+            status: "LOADING"
+        });
         this.props.model.setQuery(e.target.parentElement.firstElementChild.value);
     };
     leagueSelected = e => {
+        this.setState({
+           status: "LOADING"
+        });
         this.props.model.setSelectedLeague(e.target.value)
     };
     update() {
