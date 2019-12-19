@@ -6,3 +6,30 @@ html, body, #root{
 h1, h2, h3{
   margin: 0;
 }
+
+.loader{
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid darkgray;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /*safari*/
+  animtation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+.loader-wrapper{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

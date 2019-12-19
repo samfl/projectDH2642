@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import "./schedule.css";
+import "./matches.css";
 
-class Schedule extends Component {
+class Matches extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: "LOADING"
+            status: "LOADING",
         }
     }
 
-    componentDidMount() {
-        this.props.model.addObserver(this);
-        this.props.model.getSchedule().then(matches => {
+    loadMatches(){
+        this.props.model.getSchedule(this.props.model.getSelectedSeason()).then(matches => {
             this.setState({
                 status: "LOADED",
                 matches: matches
@@ -21,6 +20,11 @@ class Schedule extends Component {
                 status: "ERROR"
             });
         });
+    }
+
+    componentDidMount() {
+        this.props.model.addObserver(this);
+        this.loadMatches();
     }
 
     componentWillUnmount() {
@@ -38,23 +42,12 @@ class Schedule extends Component {
                 break;
             case "LOADED":
                 matches = <table><tbody>{this.state.matches.map(match=> (
-                        <tr className={"schedule-match"}>
-                            <td>
-                                {match.matchday}
-                            </td>
-                            <td>
-                                {match.homeTeam.name}
-                            </td>
-                            <td>
-                                {match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}
-
-                            </td>
-                            <td>
-                                {match.awayTeam.name}
-                            </td>
-                            <td>
-                                {match.utcDate}
-                            </td>
+                        <tr className={"matches-match"} key={match.id}>
+                            <td>{match.matchday}</td>
+                            <td>{match.homeTeam.name}</td>
+                            <td>{match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}</td>
+                            <td>{match.awayTeam.name}</td>
+                            <td>{match.utcDate}</td>
                         </tr>
                 ))}</tbody></table>
                 break;
@@ -63,13 +56,31 @@ class Schedule extends Component {
                 break;
         }
         return(
-            <div className={"schedule"}>
+            <div className={"matches"}>
+                <select onChange={this.setScheduleSeason}>
+                    <option value={'2019'}>
+                        2019/20
+                    </option>
+                    <option value={'2018'}>
+                        2018/19
+                    </option>
+                    <option value={'2017'}>
+                        2017/18
+                    </option>
+                </select>
                 {matches}
             </div>)
     }
+    setScheduleSeason = e =>{
+        this.setState({
+            status: "LOADING"
+        });
+        this.props.model.setSelectedSeason(e.target.value);
+    };
 
     update(){
+        this.loadMatches();
     }
 }
 
-export default Schedule;
+export default Matches;

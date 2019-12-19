@@ -15,7 +15,7 @@ class Sidebar extends Component {
     }
     render() {
         const teamList = this.props.model.getFavTeam().map(team =>(
-                <div key={team.id} id={team.id} className={team.area.name} onClick={this.changeFocusedTeam}>
+                <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
                     <img className={"search-img"} src={team.crestUrl}/>
                     {team.name}
                 </div>
@@ -26,8 +26,7 @@ class Sidebar extends Component {
     update(){
     }
     changeFocusedTeam = e =>{
-        console.log(e.target.className);
-        this.props.model.setFocusedTeam(e.target.className);
+        //this.props.model.setFocusedTeam(e.target.className);
     };
 }
 
