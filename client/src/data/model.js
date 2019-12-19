@@ -89,8 +89,9 @@ class Model extends Observable{
         });
     }
 
-    getStandings(season = ''){
-        const url = `${config.BASE_URL}/competitions/${leagues[this.getFocusedTeam().country]}/standings?season=${season}`;
+    /* statType can be either standings, matches or scorers */
+    getSeasonStats(statType,season = ''){
+        const url = `${config.BASE_URL}/competitions/${leagues[this.getFocusedTeam().country]}/${statType}?season=${season}`;
         return fetch(url, config.httpOptions).then(this.processResponse);
     }
 
