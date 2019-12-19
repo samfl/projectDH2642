@@ -31,29 +31,32 @@ class Schedule extends Component {
 
         switch (this.state.status) {
             case "LOADING":
-                matches = <em>Loading...</em>
+                matches =
+                    (<div className={"loader-wrapper"}>
+                        <div className={"loader"}></div>
+                    </div>)
                 break;
             case "LOADED":
-                matches = this.state.matches.map(match=> (
-                    <tr className={"schedule-match"}>
-                        <td>
-                            {match.matchday}
-                        </td>
-                        <td>
-                            {match.homeTeam.name}
-                        </td>
-                        <td>
-                            {match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}
+                matches = <table><tbody>{this.state.matches.map(match=> (
+                        <tr className={"schedule-match"}>
+                            <td>
+                                {match.matchday}
+                            </td>
+                            <td>
+                                {match.homeTeam.name}
+                            </td>
+                            <td>
+                                {match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}
 
-                        </td>
-                        <td>
-                            {match.awayTeam.name}
-                        </td>
-                        <td>
-                            {match.utcDate}
-                        </td>
-                    </tr>
-                ));
+                            </td>
+                            <td>
+                                {match.awayTeam.name}
+                            </td>
+                            <td>
+                                {match.utcDate}
+                            </td>
+                        </tr>
+                ))}</tbody></table>
                 break;
             default:
                 matches = <b>Failed to load data, please try again</b>;
@@ -61,9 +64,7 @@ class Schedule extends Component {
         }
         return(
             <div className={"schedule"}>
-                <table>
-                    {matches}
-                </table>
+                {matches}
             </div>)
     }
 
