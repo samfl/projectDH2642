@@ -34,7 +34,9 @@ class Standings extends Component{
                 )
                 break;
             case "LOADED":
-                standings = <table><tbody>
+                standings = <div>
+                    <h2>{this.state.standings.competition.name}</h2>
+                    <table><tbody>
                     <tr>
                         <th>#</th>
                         <th>Club</th>
@@ -61,13 +63,14 @@ class Standings extends Component{
                             <td>{table.points}</td>
                         </tr>
                 ))}</tbody></table>
+                </div>
                 break;
             default:
                 standings = <b>Failed to load data, please try again</b>;
             break;
         }
         return (
-            <div>
+            <div className={"Standings"}>
                 {standings}
             </div>
         );

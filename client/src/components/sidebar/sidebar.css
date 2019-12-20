@@ -1,3 +1,6 @@
+.Sidebar{
+    flex: 0.2;
+}
 .sidebar-team{
     outline: none;
     margin: 2px;

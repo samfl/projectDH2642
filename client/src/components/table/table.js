@@ -13,9 +13,11 @@ class Table extends Component{
         return (
             <div className={"Table"}>
                 <NavBar/>
-                <Sidebar model={this.props.model}/>
-                <Standings model={this.props.model}/>
-                <TopScorers model={this.props.model}/>
+                <div className={"table-body"}>
+                    <Sidebar model={this.props.model}/>
+                    <Standings model={this.props.model}/>
+                    <TopScorers model={this.props.model}/>
+                </div>
             </div>)
     }
 }
