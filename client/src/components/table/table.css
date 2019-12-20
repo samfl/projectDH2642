@@ -1,0 +1,7 @@
+.Table{
+    height: 100%;
+}
+.table-body{
+    display: flex;
+    flex-direction: row;
+}

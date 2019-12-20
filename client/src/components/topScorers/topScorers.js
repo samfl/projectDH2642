@@ -53,7 +53,7 @@ class topScorers extends Component{
                 break;
         }
         return (
-            <div>
+            <div className={"TopScorers"}>
                 <h2>Top Scorers</h2>
                 {scorers}
             </div>

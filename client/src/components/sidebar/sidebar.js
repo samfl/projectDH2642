@@ -20,7 +20,7 @@ class Sidebar extends Component {
                     {team.name}
                 </div>
             ));
-        return <div>{teamList}</div>
+        return <div className={"Sidebar"}>{teamList}</div>
     }
 
     update(){
