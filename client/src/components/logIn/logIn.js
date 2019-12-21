@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import "./logIn.css";
+import { connect } from 'react-redux'; 
+import { getUser } from '../../actions/userActions';
+import PropTypes from 'prop-types'; 
 
 class LogIn extends Component {
     constructor(props) {
@@ -10,7 +13,10 @@ class LogIn extends Component {
         };
     }
 
-    componentDidMount() { }
+    componentDidMount() { 
+        this.props.getUser();
+    }
+
     componentWillUnmount() { }
     
     handleLogIn = (event) => {
@@ -19,6 +25,8 @@ class LogIn extends Component {
     }
 
     render() {
+        const { users } = this.props.user; 
+        
         return (
             <div>
                 <h3>Login</h3>
@@ -36,4 +44,13 @@ class LogIn extends Component {
     }
 }
 
-export default LogIn;
+LogIn.propTypes = {
+    getUser: PropTypes.func.isRequired, 
+    user: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps, { getUser }) (LogIn);
