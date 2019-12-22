@@ -5,3 +5,17 @@ export const getUser = () => {
         type: GET_USER
     };
 };
+
+export const deleteUser = (username) => {
+    return {
+        type: DELETE_USER,
+        payload: username
+    };
+};
+
+export const addUser = (user) => {
+    return {
+        type: ADD_USER,
+        payload: user
+    };
+};

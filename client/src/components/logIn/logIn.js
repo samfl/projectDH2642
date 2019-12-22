@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import "./logIn.css";
 import { connect } from 'react-redux'; 
-import { getUser } from '../../actions/userActions';
+import { getUser, deleteUser } from '../../actions/userActions';
 import PropTypes from 'prop-types'; 
 
 class LogIn extends Component {
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
     user: state.user
 });
 
-export default connect(mapStateToProps, { getUser }) (LogIn);
+export default connect(mapStateToProps, { getUser, deleteUser }) (LogIn);

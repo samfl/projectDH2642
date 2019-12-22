@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Home from "./components/home/home";
-import Login from "./components/logIn/logIn";
-import Registration from "./components/signUp/signUp";
+import LogIn from "./components/logIn/logIn";
+import SignUp from "./components/signUp/signUp";
+import Profile from "./components/profile/profile";
 import SelectTeams from "./components/selectTeams/selectTeams";
 import Table from "./components/table/table";
 import Schedule from "./components/schedule/schedule";
@@ -24,8 +25,9 @@ class App extends Component {
             <Provider store={store}>
             <div className="App">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/registration" component={Registration} />
+                <Route exact path="/login" component={LogIn} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/profile" component={Profile} />
                 <Route exact path="/search" render={() => <SelectTeams model={modelInstance} />}/>
                 <Route exact path="/schedule" render={() => <Schedule model={modelInstance} />}/>
                 <Route exact path="/table" render={() => <Table model={modelInstance} />}/>
