@@ -14,9 +14,9 @@ class Table extends Component{
             <div className={"Table"}>
                 <NavBar/>
                 <div className={"table-body"}>
-                    <Sidebar model={this.props.model}/>
-                    <Standings model={this.props.model}/>
-                    <TopScorers model={this.props.model}/>
+                    <Sidebar/>
+                    <Standings/>
+                    <TopScorers/>
                 </div>
             </div>)
     }

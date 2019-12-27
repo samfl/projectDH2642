@@ -1,0 +1,8 @@
+.Result{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+.result-img{
+    width: 30px;
+}

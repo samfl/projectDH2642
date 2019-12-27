@@ -1,47 +1,32 @@
 import React, { Component } from "react";
 import "./matches.css";
+import {connect} from "react-redux";
+import {getSchedule} from "../../actions/apiActions";
 
 class Matches extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: "LOADING",
         }
     }
 
-    loadMatches(){
-        this.props.model.getSchedule(this.props.model.getSelectedSeason()).then(matches => {
-            this.setState({
-                status: "LOADED",
-                matches: matches
-            })
-        }).catch(() => {
-            this.setState({
-                status: "ERROR"
-            });
-        });
-    }
-
     componentDidMount() {
-        this.props.model.addObserver(this);
-        this.loadMatches();
+        this.props.dispatch(getSchedule('57', 'PL', '2019'))
     }
 
-    componentWillUnmount() {
-        this.props.model.removeObserver(this);
-    }
+    componentWillUnmount() { }
     render() {
         let matches = null;
 
-        switch (this.state.status) {
-            case "LOADING":
+        switch (this.props.schedule.isLoading) {
+            case true:
                 matches =
                     (<div className={"loader-wrapper"}>
                         <div className={"loader"}></div>
                     </div>)
                 break;
-            case "LOADED":
-                matches = <table><tbody>{this.state.matches.map(match=> (
+            case false:
+                matches = <table><tbody>{this.props.schedule.results.map(match=> (
                         <tr className={"matches-match"} key={match.id}>
                             <td>{match.matchday}</td>
                             <td>{match.homeTeam.name}</td>
@@ -72,15 +57,12 @@ class Matches extends Component {
             </div>)
     }
     setScheduleSeason = e =>{
-        this.setState({
-            status: "LOADING"
-        });
-        this.props.model.setSelectedSeason(e.target.value);
+        this.props.dispatch(getSchedule('57', 'PL',e.target.value));
     };
-
-    update(){
-        this.loadMatches();
-    }
 }
 
-export default Matches;
+export default connect(store => {
+    return {
+        schedule: store.api.schedule
+    };
+})(Matches)
