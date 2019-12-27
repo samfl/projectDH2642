@@ -22,7 +22,7 @@ class Profile extends Component {
     handleDelete = (username) => {
         this.props.deleteUser(username);
     }   
-
+    
     render() {
         const { users } = this.props.user; 
         const user = users.find(user => user.username == 'samflorin');

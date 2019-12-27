@@ -1,9 +1,11 @@
-import { GET_USER, ADD_USER, DELETE_USER } from './types';
+import { GET_USER, ADD_USER, DELETE_USER, USER_LOADING } from './types';
+import axios from 'axios'; 
 
-export const getUser = () => {
-    return {
-        type: GET_USER
-    };
+export const getUser = () => dispatch => {
+    dispatch(setUsersLoading());
+    axios
+        .get('/users')
+        .then(res => dispatch({type: GET_USER, payload: res.data}))
 };
 
 export const deleteUser = (username) => {
@@ -19,3 +21,9 @@ export const addUser = (user) => {
         payload: user
     };
 };
+
+export const setUsersLoading = () => {
+    return {
+        type: USER_LOADING
+    }
+}
