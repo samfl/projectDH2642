@@ -1,14 +1,8 @@
 .Search{
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    height: 100%;
 }
-#search-header{
+#search-bar{
     flex: 0.25;
-}
-#search-body{
-    flex: 0.75;
-}
-.search-img{
-    width: 30px;
 }

@@ -1,43 +1,38 @@
 import React, { Component } from "react";
 import "./standings.css";
+import {connect} from "react-redux";
+import {getStandings} from "../../actions/apiActions";
+
 
 class Standings extends Component{
     constructor(props){
         super(props);
         this.state = {
-            status: "LOADING"
         }
     }
 
     componentDidMount() {
-        this.props.model.getSeasonStats('standings').then(standings=> {
-            this.setState({
-                status: "LOADED",
-                standings: standings
-            })
-            }).catch(() => {
-                this.setState({
-                    status: "ERROR"
-                });
-            })
+        this.props.dispatch(getStandings(this.props.focusedTeam.league, '2019'))
     }
+
+    componentWillUnmount() { }
 
     render() {
         let standings = null;
 
-        switch(this.state.status){
-            case "LOADING":
+        switch(this.props.standings.isLoading){
+            case true:
                 standings = (
                     <div className={"loader-wrapper"}>
                         <div className={"loader"}></div>
                     </div>
-                )
+                );
                 break;
-            case "LOADED":
+            case false:
                 standings = <div>
-                    <h2>{this.state.standings.competition.name}</h2>
+                    <h2>{this.props.focusedTeam.league}</h2>
                     <table><tbody>
-                    <tr>
+                    <tr key={this.props.focusedTeam.league}>
                         <th>#</th>
                         <th>Club</th>
                         <th>MP</th>
@@ -49,21 +44,21 @@ class Standings extends Component{
                         <th>GD</th>
                         <th>PTS</th>
                     </tr>
-                    {this.state.standings.standings[0].table.map(table => (
-                        <tr>
-                            <td>{table.position}</td>
-                            <td>{table.team.name}</td>
-                            <td>{table.playedGames}</td>
-                            <td>{table.won}</td>
-                            <td>{table.draw}</td>
-                            <td>{table.lost}</td>
-                            <td>{table.goalsFor}</td>
-                            <td>{table.goalsAgainst}</td>
-                            <td>{table.goalDifference}</td>
-                            <td>{table.points}</td>
+                    {this.props.standings.results.table.map(team => (
+                        <tr key={team.id}>
+                            <td>{team.position}</td>
+                            <td>{team.team.name}</td>
+                            <td>{team.playedGames}</td>
+                            <td>{team.won}</td>
+                            <td>{team.draw}</td>
+                            <td>{team.lost}</td>
+                            <td>{team.goalsFor}</td>
+                            <td>{team.goalsAgainst}</td>
+                            <td>{team.goalDifference}</td>
+                            <td>{team.points}</td>
                         </tr>
                 ))}</tbody></table>
-                </div>
+                </div>;
                 break;
             default:
                 standings = <b>Failed to load data, please try again</b>;
@@ -76,4 +71,10 @@ class Standings extends Component{
         );
     }
 }
-export default Standings;
+
+export default connect(store => {
+    return {
+        standings: store.api.standings,
+        focusedTeam: store.api.focusedTeam
+    };
+})(Standings);

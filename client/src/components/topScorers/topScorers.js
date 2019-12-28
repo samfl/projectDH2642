@@ -1,47 +1,41 @@
 import React, { Component } from "react";
 import "./topScorers.css";
+import {connect} from "react-redux";
+import {getTopScorers} from "../../actions/apiActions";
 
 class topScorers extends Component{
     constructor(props){
         super(props);
         this.state = {
-            status: "LOADING"
         }
     }
 
     componentDidMount() {
-        this.props.model.getSeasonStats('scorers').then(players=> {
-            this.setState({
-                status: "LOADED",
-                players: players
-            })
-        }).catch(() => {
-            this.setState({
-                status: "ERROR"
-            });
-        })
+        this.props.dispatch(getTopScorers(this.props.focusedTeam.league, this.props.focusedTeam.season));
     }
+
+    componentWillUnmount() { }
 
     render() {
         let scorers = null;
 
-        switch(this.state.status){
-            case "LOADING":
+        switch(this.props.scorers.isLoading){
+            case true:
                 scorers = (
                     <div className={"loader-wrapper"}>
                         <div className={"loader"}></div>
                     </div>
-                )
+                );
                 break;
-            case "LOADED":
+            case false:
                 scorers = <table><tbody>
                 <tr>
                     <th>Name</th>
                     <th>Team</th>
                     <th>Goals</th>
                 </tr>
-                {this.state.players.scorers.map(scorer => (
-                    <tr>
+                {this.props.scorers.results.map(scorer => (
+                    <tr key={scorer.id}>
                         <td>{scorer.player.name}</td>
                         <td>{scorer.team.name}</td>
                         <td>{scorer.numberOfGoals}</td>
@@ -60,4 +54,9 @@ class topScorers extends Component{
         );
     }
 }
-export default topScorers;
+export default connect(store => {
+    return {
+        scorers: store.api.scorers,
+        focusedTeam: store.api.focusedTeam
+    };
+})(topScorers);

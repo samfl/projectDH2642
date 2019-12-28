@@ -12,8 +12,8 @@ class Schedule extends Component{
         return (
             <div className={"Schedule"}>
                 <NavBar/>
-                <Sidebar model={this.props.model}/>
-                <Matches model={this.props.model}/>
+                <Sidebar/>
+                <Matches/>
             </div>)
     }
 }

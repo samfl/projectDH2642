@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./sidebar.css";
+import {connect} from "react-redux";
 
 class Sidebar extends Component {
     constructor(props) {
@@ -7,14 +8,11 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
-        this.props.model.addObserver(this);
     }
 
-    componentWillUnmount() {
-        this.props.model.removeObserver(this);
-    }
+    componentWillUnmount() { }
     render() {
-        const teamList = this.props.model.getFavTeam().map(team =>(
+        const teamList = this.props.favTeams.map(team =>(
                 <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
                     <img className={"search-img"} src={team.crestUrl}/>
                     {team.name}
@@ -23,11 +21,14 @@ class Sidebar extends Component {
         return <div className={"Sidebar"}>{teamList}</div>
     }
 
-    update(){
-    }
     changeFocusedTeam = e =>{
-        //this.props.model.setFocusedTeam(e.target.className);
+        //TODO
     };
 }
 
-export default Sidebar;
+export default connect(store => {
+    return {
+        favTeams: store.api.favTeams,
+        focusedTeam: store.api.focusedTeam
+    };
+})(Sidebar);
