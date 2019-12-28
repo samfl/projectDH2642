@@ -11,27 +11,27 @@ import modelInstance from "./data/model";
 import "./App.css";
 import { Provider } from 'react-redux'; 
 import store from'./store'; 
+import { loadUser } from './actions/authActions';
+
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: "BỌỌLU",
-        };
+
+    componentDidMount() {
+        store.dispatch(loadUser()); 
     }
 
     render() {
         return (
             <Provider store={store}>
-            <div className="App">
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={LogIn} />
-                <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/search" render={() => <SelectTeams model={modelInstance} />}/>
-                <Route exact path="/schedule" render={() => <Schedule model={modelInstance} />}/>
-                <Route exact path="/table" render={() => <Table model={modelInstance} />}/>
-            </div>
+                <div className="App">
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/login" component={LogIn} />
+                    <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/search" render={() => <SelectTeams model={modelInstance} />}/>
+                    <Route exact path="/schedule" render={() => <Schedule model={modelInstance} />}/>
+                    <Route exact path="/table" render={() => <Table model={modelInstance} />}/>
+                </div>
             </Provider>
         );
     }

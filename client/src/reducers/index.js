@@ -1,9 +1,12 @@
+  
+/* Turns multiple reducing funcitons into a single one. */
+
 import { combineReducers } from 'redux';
-import userReducer from './userReducer';
+
+import errorReducer from './errorReducer';
 import authReducer from './authReducer';
 
-// add auth reducer
 export default combineReducers({
-    user: userReducer,
-   // auth: authReducer
-}); 
+  auth: authReducer,
+  error: errorReducer
+});

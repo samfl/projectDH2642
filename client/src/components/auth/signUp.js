@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import { saveUser } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
-class RegisterModal extends Component {
+class SignUp extends Component {
   state = {
     modal: false,
     name: '',
@@ -78,7 +78,7 @@ class RegisterModal extends Component {
     this.props.saveUser(newUser);
   };
 
-  render() {
+  render() {    
     return (
       <div>
         <NavLink onClick={this.toggle} href='#'>
@@ -142,4 +142,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { saveUser, clearErrors }
-)(RegisterModal);
+)(SignUp);

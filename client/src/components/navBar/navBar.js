@@ -1,43 +1,55 @@
-import React, { Component } from "react";
-import "./navBar.css";
-import {Link} from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import SignUp from '../auth/signUp';
+import LogIn from '../auth/logIn';
+import LogOut from '../auth/logOut';
 
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
-    }
+  state = {
+    isOpen: false
+  };
 
-    componentDidMount() {
-    }
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
 
-    componentWillUnmount() {
-    }
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
 
-    render() {
-        return (
-            <div className={"navBar"}>
-                <Link to={"/table"}>
-                    <span>
-                        <h2>Table</h2>
-                    </span>
-                </Link>
-                <Link to={"/schedule"}>
-                    <span>
-                        <h2>Schedule</h2>
-                    </span>
-                </Link>
-                <Link to={"/profile"}>
-                    <span>
-                        <h2>Profile</h2>
-                    </span>
-                </Link>
-                <Link to={"/search"}>
-                    <span>
-                        <h2>Search</h2>
-                    </span>
-                </Link>
-            </div>)
-    }
+  render() {
+    const { isAuthorized, user } = this.props.auth;
+
+    const authLinks = (
+        <div>
+            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+            <LogOut />
+        </div>
+    );
+
+    const guestLinks = (
+        <div>
+            <SignUp />
+            <LogIn />
+        </div>
+    );
+
+    return (
+      <div>
+            {isAuthorized ? authLinks : guestLinks}
+      </div>
+    );
+  }
 }
 
-export default NavBar;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(NavBar);

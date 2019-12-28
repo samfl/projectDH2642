@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LogIn from '../logIn/logIn';
 import SignUp from '../signUp/signUp';
+import NavBar from '../navBar/navBar';
 import "./home.css";
 
 class Home extends Component {
@@ -23,6 +24,7 @@ class Home extends Component {
             <div className="wrapper">
                 <h1 id={"title"}>BỌỌLU</h1>
                 <p>Your personal football info</p>
+                <NavBar />
                 <div id={"home-buttons"}>
                     <a onClick={this.logIn}>Log in</a>
                     <a onClick={this.signUp}>Sign up</a>

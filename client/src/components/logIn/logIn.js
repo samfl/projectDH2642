@@ -2,19 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import "./logIn.css";
 import { connect } from 'react-redux'; 
-import { getUser, deleteUser } from '../../actions/userActions';
-import PropTypes from 'prop-types'; 
 
 class LogIn extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            
-        };
-    }
 
     componentDidMount() { 
-        this.props.getUser();
     }
 
     componentWillUnmount() { }
@@ -25,7 +16,6 @@ class LogIn extends Component {
     }
 
     render() {
-        const { users } = this.props.user; 
         
         return (
             <div>
@@ -44,13 +34,4 @@ class LogIn extends Component {
     }
 }
 
-LogIn.propTypes = {
-    getUser: PropTypes.func.isRequired, 
-    user: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps, { getUser, deleteUser }) (LogIn);
+export default LogIn;

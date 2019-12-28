@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import "./profile.css";
-import { connect } from 'react-redux'; 
-import { getUser, deleteUser } from '../../actions/userActions';
-import PropTypes from 'prop-types'; 
 
 class Profile extends Component {
     constructor(props) {
@@ -38,13 +35,4 @@ class Profile extends Component {
     }
 }
 
-Profile.propTypes = {
-    getUser: PropTypes.func.isRequired, 
-    user: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-    user: state.user
-});
-
-export default connect(mapStateToProps, { getUser, deleteUser }) (Profile);
+export default Profile;
