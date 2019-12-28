@@ -27,15 +27,9 @@ class App extends Component {
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />
                     <Route exact path="/profile" component={Profile} />
-<<<<<<< HEAD
-                    <Route exact path="/search" render={() => <SelectTeams model={modelInstance} />}/>
-                    <Route exact path="/schedule" render={() => <Schedule model={modelInstance} />}/>
-                    <Route exact path="/table" render={() => <Table model={modelInstance} />}/>
-=======
                     <Route exact path="/search" component={Search}/>
                     <Route exact path="/schedule" component={Schedule}/>
                     <Route exact path="/table" component={Table}/>
->>>>>>> e08c985e38c9ebe499866ab0ce5183e77a71faff
                 </div>
             </Provider>
         );
