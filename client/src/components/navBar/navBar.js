@@ -31,10 +31,9 @@ class NavBar extends Component {
     );
 
     const guestLinks = (
-        <div>
-            <SignUp />
-            <LogIn />
-        </div>
+      <div>
+        
+      </div>
     );
 
     return (

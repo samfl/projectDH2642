@@ -1,16 +1,4 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  NavLink,
-  Alert
-} from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { saveUser } from '../../actions/authActions';
@@ -81,54 +69,16 @@ class SignUp extends Component {
   render() {    
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#'>
-          Register
-        </NavLink>
-
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Register</ModalHeader>
-          <ModalBody>
-            {this.state.message ? (
-              <Alert color='danger'>{this.state.message}</Alert>
-            ) : null}
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='name'>Name</Label>
-                <Input
-                  type='text'
-                  name='name'
-                  id='name'
-                  placeholder='Name'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
-
-                <Label for='email'>Email</Label>
-                <Input
-                  type='email'
-                  name='email'
-                  id='email'
-                  placeholder='Email'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
-
-                <Label for='password'>Password</Label>
-                <Input
-                  type='password'
-                  name='password'
-                  id='password'
-                  placeholder='Password'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  Register
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
+        <h2>Sign up</h2>
+        <form onSubmit={this.onSubmit}>
+          <label>Name</label>
+          <input name="name" id="name" type="text" placeholder="Enter name" onChange={this.onChange} required></input>
+          <label>Email</label>
+          <input name="email" id="email" type="text" placeholder="Enter email" onChange={this.onChange} required></input>
+          <label>Password</label>
+          <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+          <button type="submit">Login</button>
+        </form>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authActions';
 import PropTypes from 'prop-types';
@@ -11,11 +11,9 @@ export class LogOut extends Component {
 
   render() {
     return (
-      <Fragment>
-        <NavLink onClick={this.props.logout} href='#'>
+        <Link onClick={this.props.logout} to='#'>
           Logout
-        </NavLink>
-      </Fragment>
+        </Link>
     );
   }
 }

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Home from "./components/home/home";
-import LogIn from "./components/logIn/logIn";
-import SignUp from "./components/signUp/signUp";
+import LogIn from "./components/auth/logIn";
+import SignUp from "./components/auth/signUp";
 import Profile from "./components/profile/profile";
 import Search from "./components/search/search";
 import Table from "./components/table/table";
