@@ -1,9 +1,3 @@
-export const GET_USER = 'GET_USER';
-export const ADD_USER = 'ADD_USER';
-export const DELETE_USER = 'DELETE_USER';
-export const USER_LOADING = 'USER_LOADING';
-export const USER_LOADED = 'USER_LOADED';
-
 /** API TYPES **/
 export const TEAMS_LOADING = 'TEAMS_LOADING';
 export const STANDINGS_LOADING = 'STANDINGS_LOADING';
@@ -21,6 +15,9 @@ export const RESET_ERRORS = 'RESET_ERRORS';
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
+export const GET_USER = 'GET_USER';
+export const ADD_USER = 'ADD_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
