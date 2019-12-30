@@ -7,8 +7,7 @@ import { clearErrors } from '../../actions/errorActions';
 class SignUp extends Component {
   state = {
     modal: false,
-    name: '',
-    email: '',
+    username: '',
     password: '',
     message: null
   };
@@ -53,12 +52,11 @@ class SignUp extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { username, password } = this.state;
 
     // Create user object
     const newUser = {
-      name,
-      email,
+      username,
       password
     };
 
@@ -71,10 +69,8 @@ class SignUp extends Component {
       <div>
         <h2>Sign up</h2>
         <form onSubmit={this.onSubmit}>
-          <label>Name</label>
-          <input name="name" id="name" type="text" placeholder="Enter name" onChange={this.onChange} required></input>
-          <label>Email</label>
-          <input name="email" id="email" type="text" placeholder="Enter email" onChange={this.onChange} required></input>
+          <label>username</label>
+          <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
           <label>Password</label>
           <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
           <button type="submit">Login</button>

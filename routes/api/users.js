@@ -7,18 +7,18 @@ const User = require('../../models/User');
 
 // Save a new user - POST api/users
 router.post('/', (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, password } = req.body;
 
   // Input guard
-  if(!name || !email || !password) {
+  if(!username || !password) {
     return res.status(400).json({ message: 'Enter all fields.' });
   }
 
   // Username guard
-  User.findOne({ email }).then(user => {
+  User.findOne({ username }).then(user => {
       if(user) return res.status(400).json({ message: 'User exists already.' });
       
-      const newUser = new User({ name, email, password });
+      const newUser = new User({ username, password });
 
       // Boiler plate: Create salt & hash
       bcrypt.genSalt(15, (err, salt) => {
@@ -37,8 +37,7 @@ router.post('/', (req, res) => {
                     token,
                     user: {
                       id: user.id,
-                      name: user.name,
-                      email: user.email
+                      username: user.username
                     }
                   });
                 }

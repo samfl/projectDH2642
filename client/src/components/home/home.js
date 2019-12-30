@@ -13,7 +13,6 @@ class Home extends Component {
     }
 
     render() {
-        let displayName = this.state.form; 
         let form = this.state.form; 
         if(this.state.form == 'signUp') 
             form = <SignUp />

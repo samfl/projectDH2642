@@ -8,15 +8,15 @@ const User = require('../../models/User');
 
 // Authenticate the user - POST api/auth
 router.post('/', (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
 
   // Input guard
-  if(!email || !password) {
+  if(!username || !password) {
     return res.status(400).json({ message: 'Enter all fields.' });
   }
 
   // Username guard
-  User.findOne({ email })
+  User.findOne({ username })
     .then(user => {
       if(!user) return res.status(400).json({ message: 'No such user.' });
 
@@ -35,8 +35,7 @@ router.post('/', (req, res) => {
                 token,
                 user: {
                   id: user.id,
-                  name: user.name,
-                  email: user.email
+                  username: user.username
                 }
               });
             }

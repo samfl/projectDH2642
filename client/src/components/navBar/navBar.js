@@ -25,14 +25,14 @@ class NavBar extends Component {
 
     const authLinks = (
         <div>
-            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+            <strong>{user ? `Welcome ${user.username}` : ''}</strong>
             <LogOut />
         </div>
     );
 
     const guestLinks = (
       <div>
-        
+
       </div>
     );
 

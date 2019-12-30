@@ -34,13 +34,13 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 // Signup User
-export const saveUser = ({ name, email, password }) => dispatch => {
+export const saveUser = ({ username, password }) => dispatch => {
 
   // Content-Type header
   const config = { headers: { 'Content-Type': 'application/json' } };
 
   // Request body
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ username, password });
 
   axios
     .post('/api/users', body, config)
@@ -61,7 +61,7 @@ export const saveUser = ({ name, email, password }) => dispatch => {
 };
 
 // Login User
-export const login = ({ email, password }) => dispatch => {
+export const login = ({ username, password }) => dispatch => {
   // Headers
   const config = {
     headers: {
@@ -70,7 +70,7 @@ export const login = ({ email, password }) => dispatch => {
   };
 
   // Request body
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ username, password });
 
   axios
     .post('/api/auth', body, config)
