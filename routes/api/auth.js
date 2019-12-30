@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const auth = require('../../middleware/auth');
-const User = require('../../models/User');
+const User = require('../../models/user');
 
 // Authenticate the user - POST api/auth
 router.post('/', (req, res) => {
