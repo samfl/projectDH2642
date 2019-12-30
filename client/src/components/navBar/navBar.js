@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+
 import SignUp from '../auth/signUp';
 import LogIn from '../auth/logIn';
 import LogOut from '../auth/logOut';
@@ -23,22 +26,26 @@ class NavBar extends Component {
   render() {
     const { isAuthorized, user } = this.props.auth;
 
-    const authLinks = (
+    const userMenu = (
         <div>
             <strong>{user ? `Welcome ${user.username}` : ''}</strong>
+            <Link to="/profile">Profile</Link>
+            <Link to="/table">Table</Link>
+            <Link to="/schedule">Schedule</Link>
+            <Link to="/search">Search</Link>
             <LogOut />
         </div>
     );
 
-    const guestLinks = (
+    const guestMenu = (
       <div>
-
+            <strong>Please login to access the tools</strong>
       </div>
     );
 
     return (
       <div>
-            {isAuthorized ? authLinks : guestLinks}
+            {isAuthorized? userMenu: guestMenu}
       </div>
     );
   }

@@ -10,10 +10,7 @@ class Profile extends Component {
         };
     }
 
-    componentDidMount() { 
-        this.props.getUser();
-    }
-
+    componentDidMount() { }
     componentWillUnmount() { }
 
     handleDelete = (username) => {
@@ -21,15 +18,9 @@ class Profile extends Component {
     }   
     
     render() {
-        const { users } = this.props.user; 
-        const user = users.find(user => user.username == 'samflorin');
         return (
             <div>
-                <h3>Profile</h3>
-                <h4>Settings</h4>
-                <div>
-                    <button onClick={this.handleDelete.bind(this, user.username)}>Delete account</button>
-                </div>
+                <h1>Profile</h1>
             </div>
         );
     }
