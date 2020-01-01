@@ -48,4 +48,38 @@ router.post('/', (req, res) => {
     })
 });
 
+//removes favorite team to a user with specific id
+//TODO needs to check if team already exists in favorites(by checking id)
+//TODO addToSet wont add if an object already exists, but team objects can change (lastUpdated field of teams).
+router.patch('/addTeam/:userId', (req, res) => {
+    User.updateOne({ _id: req.params.userId }, { $addToSet: {favTeams: req.body} })
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        });
+});
+
+//removes favorite team from a user with specific id
+router.patch('/removeTeam/:userId', (req, res) => {
+    User.updateOne({ _id: req.params.userId }, { $pull: {"favTeams": {id: req.body.id}} })
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        });
+});
+
+//gets all users
+router.get('/', (req, res) =>{
+    User.find()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        })
+});
 module.exports = router;

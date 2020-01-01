@@ -15,7 +15,8 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
-  }
+  },
+  favTeams: [Object]
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
