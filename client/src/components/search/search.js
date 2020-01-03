@@ -33,7 +33,7 @@ class Search extends Component {
                             <button value={this.props.search.query}
                                     onClick={this.onSearch}>search</button>
                         </div>
-                        <Result teams={this.props.search.teams}/>
+                        <Result/>
                     </div>
                 </div>
             </div>)

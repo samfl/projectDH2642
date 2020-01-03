@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
           if(!isMatch) return res.status(400).json({ message: 'Wrong password.' });
 
           jwt.sign(
-            { id: user.id },
+            { _id: user._id },
             config.get('jwtSecret'),
             { expiresIn: 3600 },
             (err, token) => {
@@ -34,8 +34,9 @@ router.post('/', (req, res) => {
               res.json({
                 token,
                 user: {
-                  id: user.id,
-                  username: user.username
+                  _id: user._id,
+                  username: user.username,
+                  favTeams: user.favTeams
                 }
               });
             }
@@ -46,7 +47,7 @@ router.post('/', (req, res) => {
 
 // Get user data - GET api/auth/user
 router.get('/user', auth, (req, res) => {
-  User.findById(req.user.id)
+  User.findById(req.user._id)
     .select('-password')
     .then(user => res.json(user));
 });

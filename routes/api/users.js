@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
           newUser.save()
             .then(user => {
               jwt.sign(
-                { id: user.id },
+                { _id: user._id },
                 config.get('jwtSecret'),
                 { expiresIn: 3600 },
                 (err, token) => {
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
                   res.json({
                     token,
                     user: {
-                      id: user.id,
+                      _id: user._id,
                       username: user.username
                     }
                   });
@@ -64,7 +64,7 @@ router.patch('/addTeam/:userId', (req, res) => {
             favTeams: req.body
         }
     }).then(data => {
-            res.json(data);
+            res.redirect(303, `/api/users/favorites/${req.params.userId}`)
         })
         .catch(err => {
             res.json({ message: err });
@@ -82,11 +82,21 @@ router.patch('/removeTeam/:userId', (req, res) => {
             }
         }
     }).then(data => {
-            res.json(data);
+            res.redirect(303, `/api/users/favorites/${req.params.userId}`)
         })
         .catch(err => {
             res.json({ message: err });
         });
+});
+
+router.get('/favorites/:userId', (req, res) => {
+    User.findById(req.params.userId)
+        .then(data => {
+            res.json(data.favTeams);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        })
 });
 
 //gets all users

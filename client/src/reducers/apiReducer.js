@@ -45,10 +45,7 @@ const initialState = {
       league: 'PL',
       season: '2019',
         teamID: '57'
-    },
-    /* array of users favorite teams to be displayed in the sidebar*/
-    favTeams: []
-    /* */
+    }
 };
 
 export default function (state = initialState, action) {

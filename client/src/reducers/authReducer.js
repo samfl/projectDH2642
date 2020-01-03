@@ -6,7 +6,7 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE
+  SIGNUP_FAILURE, TEAM_ADDED, TEAM_SAVED, TEAM_REMOVED, TEAM_DELETED
 } from '../actions/types';
 
 const initialState = {
@@ -50,6 +50,22 @@ export default function(state = initialState, action) {
         user: null,
         isAuthorized: false,
         isLoading: false
+      };
+    case TEAM_SAVED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favTeams: action.payload
+        }
+      };
+    case TEAM_DELETED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          favTeams: action.payload
+        }
       };
     default:
       return state;

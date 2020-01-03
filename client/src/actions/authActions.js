@@ -9,7 +9,9 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE
+  SIGNUP_FAILURE,
+  TEAM_SAVED,
+  TEAM_DELETED
 } from './types';
 
 // Check token & load user
@@ -111,4 +113,36 @@ export const tokenConfig = getState => {
   }
 
   return config;
+};
+
+//adds a team to the users favorite teams
+//TODO remove team from state before patch?
+export const addTeam = (body, userId) => {
+  return function(dispatch){
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    axios
+        .patch(`/api/users/addTeam/${userId}`, body, config)
+        .then(res =>{
+          dispatch({
+            type: TEAM_SAVED,
+            payload: res.data
+          })
+        })
+  }
+};
+
+//removes a team from users favorite teams
+//TODO remove team from state before patch?
+export const removeTeam = (body, userId) => {
+  return function(dispatch){
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    axios
+        .patch(`/api/users/removeTeam/${userId}`, body, config)
+        .then(res =>{
+          dispatch({
+            type: TEAM_DELETED,
+            payload: res.data
+          })
+        })
+  }
 };
