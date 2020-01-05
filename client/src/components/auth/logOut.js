@@ -11,7 +11,7 @@ export class LogOut extends Component {
 
   render() {
     return (
-        <Link onClick={this.props.logout} to='#'>
+        <Link onClick={this.props.logout} to='/'>
           Logout
         </Link>
     );

@@ -11,7 +11,7 @@ import "./App.css";
 import { Provider } from 'react-redux'; 
 import store from'./store'; 
 import { loadUser } from './actions/authActions';
-
+import PrivateRoute from './components/privateRoute';
 
 class App extends Component {
 
@@ -26,10 +26,10 @@ class App extends Component {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={LogIn} />
                     <Route exact path="/signup" component={SignUp} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/search" component={Search}/>
-                    <Route exact path="/schedule" component={Schedule}/>
-                    <Route exact path="/table" component={Table}/>
+                    <PrivateRoute exact path="/profile" component={Profile} />
+                    <PrivateRoute exact path="/search" component={Search}/>
+                    <PrivateRoute exact path="/schedule" component={Schedule}/>
+                    <PrivateRoute exact path="/table" component={Table}/>
                 </div>
             </Provider>
         );

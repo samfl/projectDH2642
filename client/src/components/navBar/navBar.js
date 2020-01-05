@@ -8,18 +8,8 @@ import LogIn from '../auth/logIn';
 import LogOut from '../auth/logOut';
 
 class NavBar extends Component {
-  state = {
-    isOpen: false
-  };
-
   static propTypes = {
     auth: PropTypes.object.isRequired
-  };
-
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
   };
 
   render() {
