@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import "./auth.css";
+
 
 class LogIn extends Component {
   state = {
@@ -62,11 +64,22 @@ class LogIn extends Component {
       <div>
         <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
-          <label>username</label>
-          <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
-          <label>Password</label>
-          <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
-          <button type="submit">Login</button>
+        <ul className="flex-outer">
+          <li>
+            <label>Username</label>
+            <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
+          </li>
+          <li>
+            <label>Password</label>
+            <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+          </li>
+          <li>
+            <button type="submit">Login</button>
+          </li>
+        </ul>
+
+
+          
         </form>
       </div>
     );

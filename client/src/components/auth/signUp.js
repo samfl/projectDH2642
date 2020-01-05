@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { saveUser } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
+import "./auth.css";
+
 class SignUp extends Component {
   state = {
     modal: false,
@@ -67,13 +69,21 @@ class SignUp extends Component {
   render() {    
     return (
       <div>
-        <h2>Sign up</h2>
         <form onSubmit={this.onSubmit}>
-          <label>username</label>
-          <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
-          <label>Password</label>
-          <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
-          <button type="submit">Login</button>
+          <ul className="flex-outer">
+              <h2>SignUp</h2>
+            <li>
+              <label>username</label>
+              <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
+            </li>
+            <li>
+              <label>Password</label>
+              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+            </li>
+            <li>
+              <button type="submit">Login</button>
+            </li>
+          </ul>
         </form>
       </div>
     );

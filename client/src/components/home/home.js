@@ -21,7 +21,7 @@ class Home extends Component {
       };
 
     render() {
-        const { isAuthorized, user } = this.props.auth;
+        const { isAuthorized } = this.props.auth;
         let form = this.state.form; 
         if(this.state.form == 'signUp') 
             form = <SignUp />
@@ -44,9 +44,14 @@ class Home extends Component {
 
         return (
             <div className="wrapper">
-                <h1 id={"title"}>BỌỌLU</h1>
-                <p>Your personal football info</p>
-                {isAuthorized? userHome: guestHome}
+                <div className="containerFlexCenter">
+                    <h1 id={"title"}>BỌỌLU</h1>
+                    <p>YOUR PERSONAL FOOTBALL INFORMATION</p>
+                </div>
+
+                <div className="containerFlexCenter">
+                    {isAuthorized? userHome: guestHome}
+                </div>
             </div>
         );
     }
