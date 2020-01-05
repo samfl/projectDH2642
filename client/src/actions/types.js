@@ -19,6 +19,9 @@ export const GET_USER = 'GET_USER';
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 
+export const TEAM_SAVED = 'TEAM_SAVED';
+export const TEAM_DELETED = 'TEAM_DELETED';
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";

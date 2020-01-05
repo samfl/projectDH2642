@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
           newUser.save()
             .then(user => {
               jwt.sign(
-                { id: user.id },
+                { _id: user._id },
                 config.get('jwtSecret'),
                 { expiresIn: 3600 },
                 (err, token) => {
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
                   res.json({
                     token,
                     user: {
-                      id: user.id,
+                      _id: user._id,
                       username: user.username
                     }
                   });
@@ -48,4 +48,65 @@ router.post('/', (req, res) => {
     })
 });
 
+//adds favorite team to a user with specific id
+router.patch('/addTeam/:userId', (req, res) => {
+    User.updateOne({
+        _id: req.params.userId,
+        favTeams: {
+            "$not": {
+                "$elemMatch": {
+                    "id": req.body.id
+                }
+            }
+        }
+    }, {
+        $addToSet: {
+            favTeams: req.body
+        }
+    }).then(data => {
+            res.redirect(303, `/api/users/favorites/${req.params.userId}`)
+        })
+        .catch(err => {
+            res.json({ message: err });
+        });
+});
+
+//removes favorite team from a user with specific id
+router.patch('/removeTeam/:userId', (req, res) => {
+    User.updateOne({
+        _id: req.params.userId
+    }, {
+        $pull: {
+            "favTeams": {
+                id: req.body.id
+            }
+        }
+    }).then(data => {
+            res.redirect(303, `/api/users/favorites/${req.params.userId}`)
+        })
+        .catch(err => {
+            res.json({ message: err });
+        });
+});
+
+router.get('/favorites/:userId', (req, res) => {
+    User.findById(req.params.userId)
+        .then(data => {
+            res.json(data.favTeams);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        })
+});
+
+//gets all users
+router.get('/', (req, res) =>{
+    User.find()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.json({ message: err });
+        })
+});
 module.exports = router;

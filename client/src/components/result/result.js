@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./result.css";
 import { connect } from 'react-redux';
-//import { addToFavorites } from '?' //TODO
+import { addTeam } from '../../actions/authActions'
 
 class Result extends Component{
     constructor(props){
@@ -18,11 +18,11 @@ class Result extends Component{
             case true:
                 teamList = (
                     <div className={"loader-wrapper"}>
-                    <div className={"loader"}></div>
-                </div>)
+                        <div className={"loader"}></div>
+                    </div>)
                 break;
             case false:
-                teamList = this.props.teams.map(team =>(
+                teamList = this.props.search.teams.map(team =>(
                     <div key={team.id}>
                         <img className={"result-img"} src={team.crestUrl}/>
                         {team.name}
@@ -40,12 +40,16 @@ class Result extends Component{
     }
 
     addClickedTeam = e => {
-        //TODO
+        const team = JSON.parse(e.target.value);
+        Object.assign(team, {league: this.props.search.league});
+        this.props.dispatch(addTeam(team, this.props.user._id));
     };
 }
 
 export default connect(store => {
     return {
-        isLoading: store.api.search.isLoading
+        isLoading: store.api.search.isLoading,
+        user: store.auth.user,
+        search: store.api.search.results
     };
 })(Result)
