@@ -7,6 +7,7 @@ const auth = require('../../middleware/auth');
 const User = require('../../models/user');
 
 // Authenticate the user - POST api/auth
+// Public
 router.post('/', (req, res) => {
   const { username, password } = req.body;
 
@@ -44,10 +45,44 @@ router.post('/', (req, res) => {
     })
 });
 
+// Delete a user?? 
+router.get('/delete', function(req, res){
+  var id = req.query.id;
+  User.find({_id: id}).remove().exec(function(err, expense) {
+   if(err)
+    res.send(err)
+   res.send('User successfully deleted!');
+  })
+ });
+
+ // Update a user ?? 
+ router.route('/update')
+.post(function(req, res) {
+ const doc = {
+     username: req.body.description,
+     password: req.body.password,
+     teams: req.body.teams,
+     year: req.body.year
+ };
+ console.log(doc);
+  Expense.update({_id: req.user.id}, doc, function(err, result) {
+      if (err)
+        res.send(err);
+      res.send('Expense successfully updated!');
+  });
+});
+
 // Get user data - GET api/auth/user
+// Private
 router.get('/user', auth, (req, res) => {
   User.findById(req.user.id)
     .select('-password')
+    .then(user => res.json(user));
+});
+
+// Delete a user
+router.get('/user', auth, (req, res) => {
+  User.deleteOne({ "_id": req.user.id})
     .then(user => res.json(user));
 });
 

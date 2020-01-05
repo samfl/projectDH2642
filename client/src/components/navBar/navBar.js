@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-
 import SignUp from '../auth/signUp';
 import LogIn from '../auth/logIn';
 import LogOut from '../auth/logOut';
