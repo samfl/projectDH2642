@@ -12,7 +12,7 @@ export class LogOut extends Component {
 
   render() {
     return (
-        <Link onClick={this.props.logout} to='/'>
+        <Link id="logOut" onClick={this.props.logout} to='/'>
           Logout
         </Link>
     );

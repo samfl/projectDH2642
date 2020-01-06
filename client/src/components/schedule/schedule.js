@@ -10,10 +10,12 @@ class Schedule extends Component{
     }
     render(){
         return (
-            <div className={"Schedule"}>
+            <div className={"schedule"}>
                 <NavBar/>
-                <Sidebar/>
-                <Matches/>
+                <div className="schedule-wrapper">
+                  <Sidebar/>
+                  <Matches/>
+                </div>
             </div>)
     }
 }

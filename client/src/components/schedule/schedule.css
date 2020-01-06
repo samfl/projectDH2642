@@ -1,0 +1,9 @@
+.schedule {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.schedule-wrapper {
+  display: flex;
+  flex-direction: row;
+}
