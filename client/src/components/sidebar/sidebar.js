@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./sidebar.css";
 import {connect} from "react-redux";
 import { removeTeam } from '../../actions/authActions'
+import noTeam from "../../images/noTeam.png";
+import { imageExists } from "../../images/image";
 
 class Sidebar extends Component {
     constructor(props) {
@@ -31,7 +33,7 @@ class Sidebar extends Component {
                 teamList = (
                     this.props.auth.user.favTeams.map(team => (
                         <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
-                            <img className={"result-img"} src={team.crestUrl}/>
+                            <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
                             {team.name}
                             <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
                         </div>)
