@@ -1,6 +1,16 @@
 .matches{
     height: 100%;
+    flex: 0.7;
+    align-self: center;
 }
+  .matches select {
+    margin-left: auto;
+    padding: 4px 8px;
+    border: none;
+    letter-spacing: .09em;
+    border-radius: 2px;
+    margin: 1%;
+  }
 .matches-match{
     text-align: center;
 }

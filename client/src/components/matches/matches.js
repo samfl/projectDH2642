@@ -32,7 +32,7 @@ class Matches extends Component {
                             <td>{match.homeTeam.name}</td>
                             <td>{match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}</td>
                             <td>{match.awayTeam.name}</td>
-                            <td>{match.utcDate}</td>
+                            <td>{(new Date(match.utcDate)).toUTCString()}</td>
                         </tr>
                 ))}</tbody></table>
                 break;
@@ -41,7 +41,7 @@ class Matches extends Component {
                 break;
         }
         return(
-            <div className={"matches"}>
+              <div className={"matches"}>
                 <select onChange={this.setScheduleSeason}>
                     <option value={'2019'}>
                         2019/20

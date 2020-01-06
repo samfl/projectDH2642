@@ -1,10 +1,31 @@
 .Sidebar{
-    flex: 0.2;
+    flex: 0.3;
 }
 .sidebar-team{
     outline: none;
     margin: 2px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
 }
-.sidebar-team:focus{
-    background-color: blue;
+.sidebar-team:hover{
+  background-color: #fff;
+  color: black;
+}
+.sidebar-team button {
+  margin-left: auto;
+  padding: 5px 8px;
+  border: none;
+  background: #333;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 2px;
+}
+.sidebar-team button:hover {
+  background-color: #f2f2f2;
+  color: #333;
 }
