@@ -4,5 +4,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 3% 0 3%;
-    font-size: 45px;
+    font-size: 30px;
+    color: white;
+}
+.navBar-text{
+  color: white;
+  font-family: inherit;
+}
+.navBar-text:hover{
+  color: black;
 }

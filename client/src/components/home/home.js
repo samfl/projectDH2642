@@ -10,7 +10,7 @@ import "./home.css";
 
 class Home extends Component {
     constructor() {
-        super(); 
+        super();
         this.state = {
             form: 'logIn'
         };
@@ -22,8 +22,8 @@ class Home extends Component {
 
     render() {
         const { isAuthorized } = this.props.auth;
-        let form = this.state.form; 
-        if(this.state.form == 'signUp') 
+        let form = this.state.form;
+        if(this.state.form == 'signUp')
             form = <SignUp />
         else
             form = <LogIn />
@@ -31,7 +31,6 @@ class Home extends Component {
         const userHome = (
             <div>
                 <NavBar />
-                <Profile />
             </div>
         )
 
@@ -67,7 +66,7 @@ class Home extends Component {
 const mapStateToProps = state => ({
     auth: state.auth
   });
-  
+
   export default connect(
     mapStateToProps,
     null

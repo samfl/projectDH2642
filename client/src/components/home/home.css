@@ -9,11 +9,10 @@
 
 .containerFlexCenter {
     flex: 0 0 100%; /* Let it fill the entire space horizontally */
-    text-align: center; 
+    text-align: center;
 
 }
 
 #title {
     font-size: 70px;
-
 }
