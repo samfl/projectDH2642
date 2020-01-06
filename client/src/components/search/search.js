@@ -19,11 +19,10 @@ class Search extends Component {
         return (
             <div className={"Search"}>
                 <NavBar/>
-                <div>
+                <div className={"search-body"}>
                     <Sidebar model={this.props.model}/>
-                    <div>
+                    <div className={"search-body-result"}>
                         <div id={"search-bar"}>
-                            <input type={"text"} placeholder={"Enter a key word"} id={"search-query"}/>
                             <select id={"search-select"} onChange={this.onLeagueSelect}>
                                 <option value="PL">Premier League</option>
                                 <option value="ELC">Championship</option>
@@ -34,8 +33,10 @@ class Search extends Component {
                                 <option value="DED">Eredivisie</option>
                                 <option value="PPL">Primeira Liga</option>
                             </select>
-                            <button value={this.props.search.query}
-                                    onClick={this.onSearch}>search</button>
+                            <input type={"text"} placeholder={"Enter a key word"} id={"search-query"}/>
+                            <button id={"search-btn"} value={this.props.search.query} onClick={this.onSearch}>
+                                    search
+                            </button>
                         </div>
                         <Result/>
                     </div>
@@ -43,7 +44,7 @@ class Search extends Component {
             </div>)
     }
     onSearch = e =>{
-        this.props.dispatch(getTeams(this.props.search.league, e.target.parentElement.firstElementChild.value))
+        this.props.dispatch(getTeams(this.props.search.league, e.target.parentElement.firstElementChild.nextElementSibling.value))
     };
     onLeagueSelect = e => {
         this.props.dispatch(getTeams(e.target.value, this.props.search.query))
