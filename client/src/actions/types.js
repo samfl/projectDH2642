@@ -18,6 +18,7 @@ export const USER_LOADED = "USER_LOADED";
 export const GET_USER = 'GET_USER';
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
+export const PASSWORD_UPDATED = 'PASSWORD_UPDATED';
 
 export const TEAM_SAVED = 'TEAM_SAVED';
 export const TEAM_DELETED = 'TEAM_DELETED';

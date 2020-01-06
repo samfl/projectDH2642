@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './navBar.css';
 
 import SignUp from '../auth/signUp';
@@ -18,11 +18,11 @@ class NavBar extends Component {
 
     const userMenu = (
         <div className="navBar">
-            <strong>{user ? `Welcome ${user.username}` : ''}</strong>
-            <Link className="navBar-text" to="/profile">Profile</Link>
-            <Link className="navBar-text" to="/table">Table</Link>
-            <Link className="navBar-text" to="/schedule">Schedule</Link>
-            <Link className="navBar-text" to="/search">Search</Link>
+            <strong>{user ? `Welcome ${user.username}!` : ''}</strong>
+            <NavLink className="navBar-text" activeClassName="selected" to="/profile">Profile</NavLink>
+            <NavLink className="navBar-text" activeClassName="selected" to="/table">Table</NavLink>
+            <NavLink className="navBar-text" activeClassName="selected" to="/schedule">Schedule</NavLink>
+            <NavLink className="navBar-text" activeClassName="selected" to="/search">Search</NavLink>
             <LogOut />
         </div>
     );

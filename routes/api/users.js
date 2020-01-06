@@ -9,12 +9,10 @@ const User = require('../../models/user');
 router.post('/', (req, res) => {
   const { username, password } = req.body;
 
-  // Input guard
   if(!username || !password) {
     return res.status(400).json({ message: 'Enter all fields.' });
   }
 
-  // Username guard
   User.findOne({ username }).then(user => {
       if(user) return res.status(400).json({ message: 'User exists already.' });
       
@@ -109,4 +107,16 @@ router.get('/', (req, res) =>{
             res.json({ message: err });
         })
 });
+
+// Change the user password
+router.patch('/changePassword/:userId', (req, res) => {
+    User.findOneAndUpdate({ _id: req.params.userId } ,{$set: {password: req.body}})
+    .then(data => { 
+        res.redirect(303, `/api/users/updatePassword/${req.params.userId}`) 
+    })
+    .catch(err => {
+            res.json({ message: err });
+    });
+});
+
 module.exports = router;

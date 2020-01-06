@@ -11,7 +11,8 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
   TEAM_SAVED,
-  TEAM_DELETED
+  TEAM_DELETED,
+  PASSWORD_UPDATED
 } from './types';
 
 // Check token & load user
@@ -141,6 +142,20 @@ export const removeTeam = (body, userId) => {
         .then(res =>{
           dispatch({
             type: TEAM_DELETED,
+            payload: res.data
+          })
+        })
+  }
+};
+
+export const changePassword = (body, userId) => {
+  return function(dispatch){
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    axios
+        .patch(`/api/users/changePassword/${userId}`, body, config)
+        .then(res =>{
+          dispatch({
+            type: PASSWORD_UPDATED,
             payload: res.data
           })
         })

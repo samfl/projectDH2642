@@ -1,6 +1,7 @@
 import {
   USER_LOADED,
   USER_LOADING,
+  PASSWORD_UPDATED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -65,6 +66,14 @@ export default function(state = initialState, action) {
         user: {
           ...state.user,
           favTeams: action.payload
+        }
+      };
+    case PASSWORD_UPDATED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          password: action.payload
         }
       };
     default:
