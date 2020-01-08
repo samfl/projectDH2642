@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { saveUser } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
@@ -12,13 +11,6 @@ class SignUp extends Component {
     username: '',
     password: '',
     message: null
-  };
-
-  static propTypes = {
-    isAuthorized: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    saveUser: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
   };
 
   componentDidUpdate(prevProps) {
@@ -58,13 +50,11 @@ class SignUp extends Component {
     }); 
     const { username, password } = this.state;
 
-    // Create user object
     const newUser = {
       username,
       password
     };
 
-    // Attempt to saveUser
     this.props.saveUser(newUser);
   };
 

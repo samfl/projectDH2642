@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 import "./auth.css";
@@ -13,13 +12,6 @@ class LogIn extends Component {
     message: null
   };
 
-  static propTypes = {
-    isAuthorized: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
-  };
-
   componentDidUpdate(prevProps) {
     const { error, isAuthorized } = this.props;
     if (error !== prevProps.error) {
@@ -30,7 +22,6 @@ class LogIn extends Component {
       }
     }
 
-    // If authenticated, stop loading
     if (this.state.loading) {
       if (isAuthorized) {
         this.toggleErrAndLoad();
@@ -39,7 +30,6 @@ class LogIn extends Component {
   }
 
   toggleErrAndLoad = () => {
-    // Clear errors
     this.props.clearErrors();
     this.setState({
       loading: !this.state.loading
@@ -59,7 +49,6 @@ class LogIn extends Component {
     }); 
     const { username, password } = this.state;
     const user = { username, password };
-    // Attempt to login
     this.props.login(user);
   };
 

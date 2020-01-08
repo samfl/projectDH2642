@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './navBar.css';
 
@@ -9,9 +8,6 @@ import LogIn from '../auth/logIn';
 import LogOut from '../auth/logOut';
 
 class NavBar extends Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
 
   render() {
     const { isAuthorized, user } = this.props.auth;

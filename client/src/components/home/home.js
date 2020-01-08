@@ -3,7 +3,6 @@ import LogIn from '../auth/logIn';
 import SignUp from '../auth/signUp';
 import NavBar from '../navBar/navBar';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import "./home.css";
 import footballPlayer from '../../images/footballplayer1.png'
 
@@ -14,10 +13,6 @@ class Home extends Component {
             formValue: true
         };
     }
-
-    static propTypes = {
-        auth: PropTypes.object.isRequired
-      };
 
       toggleForm = () => {
         this.setState({
