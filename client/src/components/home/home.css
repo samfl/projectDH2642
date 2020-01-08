@@ -3,16 +3,42 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: 100%;
     flex-flow: row wrap;
 }
 
 .containerFlexCenter {
-    flex: 0 0 100%; /* Let it fill the entire space horizontally */
+    flex: 100%; /* Let it fill the entire space horizontally */
     text-align: center;
+}
 
+.headerWrapper {
+    display: flex; 
+    justify-content: center;
+    border-bottom: 1px solid white; 
+}
+
+.textInfo, .textInfo p {
+    font-family: Garamond;
+    display: block; 
+    padding: 0px; 
+    margin: 0px; 
+    text-align: left;
+}
+
+#headerImage {
+    height: 100px; 
 }
 
 #title {
     font-size: 70px;
+}
+
+.formToggle {
+    margin-left: auto;
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+    padding: 8px 16px;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: .09em;
 }

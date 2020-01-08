@@ -54,6 +54,3 @@ h1, h2, h3{
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
-.loader-wrapper-right{
-  float: right; 
-}

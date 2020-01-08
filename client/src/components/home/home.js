@@ -5,12 +5,13 @@ import NavBar from '../navBar/navBar';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import "./home.css";
+import footballPlayer from '../../images/footballplayer1.png'
 
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            form: 'logIn'
+            formValue: true
         };
     }
 
@@ -18,32 +19,41 @@ class Home extends Component {
         auth: PropTypes.object.isRequired
       };
 
+      toggleForm = () => {
+        this.setState({
+            formValue: !this.state.formValue
+        })
+    }
+
     render() {
         const { isAuthorized } = this.props.auth;
-        let form = this.state.form;
-        if(this.state.form == 'signUp')
+        let form = null; 
+        let buttonName = null; 
+        if(this.state.formValue) {
             form = <SignUp />
-        else
+            buttonName = 'Change To Login'
+        } else {
             form = <LogIn />
-
-        const userHome = (
-            <div>
-                <NavBar />
-            </div>
-        );
-        
-        const guestHome = (
-            <div>
-                {form}
-                <button onClick={this.onClick}>Switch</button>
-            </div>
-        );
+            buttonName = 'Change To SignUp'
+        }
+        const userHome = ( <div> <NavBar /> </div>);
+        const guestHome = ( <div> {form} <button className="formToggle" onClick={this.toggleForm}> {buttonName} </button> </div> );
 
         return (
             <div className="wrapper">
                 <div className="containerFlexCenter">
                     <h1 id={"title"}>BỌỌLU</h1>
-                    <p>Your Personal Football Information</p>
+                    <div className="headerWrapper">
+                        <div className="textInfo">
+                            <ul>
+                                <li>Your personal football stats</li>
+                                <li>League tables for your favorite team</li>
+                                <li>Match schedule for your favorite team</li>
+                            </ul>
+                        </div>
+                        <img id="headerImage" src={footballPlayer} alt="football player" />
+                    </div>
+                   
                 </div>
 
                 <div className="containerFlexCenter">
@@ -51,13 +61,6 @@ class Home extends Component {
                 </div>
             </div>
         );
-    }
-
-    onClick = e => {
-        if (this.state.form == 'signUp')
-            this.setState({ form: 'logIn' });
-        else
-            this.setState({ form: 'signUp' });
     }
 }
 
