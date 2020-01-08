@@ -41,8 +41,8 @@ h1, h2, h3{
   border-top: 10px solid darkgray;
   width: 33px;
   height: 33px;
-  -webkit-animation: spin 2s linear infinite; /*safari*/
-  animtation: spin 2s linear infinite;
+  -webkit-animation: spin 1s linear infinite; /*safari*/
+  animtation: spin 1s linear infinite;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }

@@ -5,7 +5,6 @@ import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 import "./auth.css";
 
-
 class LogIn extends Component {
   state = {
     loading: false,
@@ -34,12 +33,12 @@ class LogIn extends Component {
     // If authenticated, stop loading
     if (this.state.loading) {
       if (isAuthorized) {
-        this.toggle();
+        this.toggleErrAndLoad();
       }
     }
   }
 
-  toggle = () => {
+  toggleErrAndLoad = () => {
     // Clear errors
     this.props.clearErrors();
     this.setState({
@@ -53,8 +52,10 @@ class LogIn extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    e.target.reset();
     this.setState({
-      loading: true
+      loading: true,
+      message: null
     }); 
     const { username, password } = this.state;
     const user = { username, password };
@@ -63,18 +64,22 @@ class LogIn extends Component {
   };
 
   render() {
-    let status = 
-      <li className="submit">
-        <button type="submit">Login</button>
-      </li>
+    let status = null; 
+    let errorMessage = null; 
 
-    if(this.state.loading) {
-      status = 
-        <div className={"loader-wrapper"}>
-          <div className={"loader-auth"}></div>
-        </div>
+    if (this.state.loading) {
+      status = <div className={"loader-wrapper"}> <div className={"loader-auth"}></div></div>
+    } else {
+      status = <li className="submit"> <button type="submit">Login</button></li> ; 
     }
-    
+
+    if (this.state.message && this.state.loading) {
+      errorMessage = <p className="authErrorAlert">{this.state.message}</p>
+      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+    } else {
+      errorMessage = null; 
+    }
+
     return (
       <div>
         <form onSubmit={this.onSubmit}>
@@ -91,6 +96,7 @@ class LogIn extends Component {
               <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
             </li>
             {status}
+            {errorMessage}
           </ul>   
         </form>
       </div>

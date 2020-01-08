@@ -31,16 +31,14 @@ class SignUp extends Component {
       }
     }
 
-    // If authenticated, set loading
     if (this.state.loading) {
       if (isAuthorized) {
-        this.toggle();
+        this.toggleErrAndLoad();
       }
     }
   }
 
-  toggle = () => {
-    // Clear errors
+  toggleErrAndLoad = () => {
     this.props.clearErrors();
     this.setState({
       loading: !this.state.loading
@@ -53,7 +51,11 @@ class SignUp extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
+    e.target.reset();
+    this.setState({
+      loading: true,
+      message: null
+    }); 
     const { username, password } = this.state;
 
     // Create user object
@@ -67,17 +69,21 @@ class SignUp extends Component {
   };
 
   render() {    
-    let status = 
-    <li className="submit">
-      <button type="submit">Register</button>
-    </li>
+    let status = null; 
+    let errorMessage = null; 
 
-  if(this.state.loading) {
-    status = 
-      <div className={"loader-wrapper"}>
-        <div className={"loader-auth"}></div>
-      </div>
-  }
+    if (this.state.loading) {
+      status = <div className={"loader-wrapper"}> <div className={"loader-auth"}></div></div>
+    } else {
+      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+    }
+
+    if (this.state.message && this.state.loading) {
+      errorMessage = <p className="authErrorAlert">{this.state.message}</p>
+      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+    } else {
+      errorMessage = null; 
+    }
 
     return (
       <div>
@@ -95,6 +101,7 @@ class SignUp extends Component {
               <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
             </li>
             {status}
+            {errorMessage}
           </ul>
         </form>
       </div>
