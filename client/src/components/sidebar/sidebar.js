@@ -51,6 +51,7 @@ class Sidebar extends Component {
     }
     removeClickedTeam = e =>{
         const team = JSON.parse(e.target.value);
+        console.log(team);
         this.props.dispatch(removeTeam(team, this.props.auth.user._id));
     };
 

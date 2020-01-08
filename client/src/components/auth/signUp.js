@@ -65,12 +65,12 @@ class SignUp extends Component {
     if (this.state.loading) {
       status = <div className={"loader-wrapper"}> <div className={"loader-auth"}></div></div>
     } else {
-      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+      status = <li className="submit"> <button type="submit">Signup</button></li> ; 
     }
 
     if (this.state.message && this.state.loading) {
       errorMessage = <p className="authErrorAlert">{this.state.message}</p>
-      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+      status = <li className="submit"> <button type="submit">Signup</button></li> ; 
     } else {
       errorMessage = null; 
     }

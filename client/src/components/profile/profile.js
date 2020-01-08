@@ -4,17 +4,18 @@ import "./profile.css";
 import NavBar from '../navBar/navBar';
 import Sidebar from "../sidebar/sidebar";
 import {connect} from "react-redux";
-import { removeTeam } from '../../actions/authActions'
+import { removeTeam, changePassword } from '../../actions/authActions'
 import noTeam from "../../images/noTeam.png";
 import { imageExists } from "../../images/image";
 
 class Profile extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            
-        };
     }
+    state = {
+        newPassword: '',
+        loading: false
+    };
 
     componentDidMount() { }
     componentWillUnmount() { }
@@ -23,9 +24,24 @@ class Profile extends Component {
         this.props.deleteUser(username);
     }   
 
-    removeClickedTeam = e =>{
+    removeClickedTeam = e => {
         const team = JSON.parse(e.target.value);
         this.props.dispatch(removeTeam(team, this.props.auth.user._id));
+    };
+
+    onChange = e => {
+        this.setState({ newPassword: e.target.value });
+        console.log(e.target.value);
+    };
+
+    changePassword = e => {
+        e.preventDefault();
+        e.target.reset();
+        const {newPassword} = this.state; 
+        const password = {
+            newPassword
+        };
+        this.props.dispatch(changePassword(password, this.props.auth.user._id));
     };
     
     render() {
@@ -48,6 +64,12 @@ class Profile extends Component {
                 <NavBar/>
                 <h2>Username:</h2>
                 {username}
+                <h2>Change password:</h2>
+                <form onSubmit={this.changePassword}>
+                    <label>Password</label>
+                    <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+                    <button type="submit">confirm</button>
+                </form>
                 <h2>Favorite teams:</h2>
                 {teamList}
                 <h2>Favorite league:</h2>
