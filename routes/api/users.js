@@ -110,6 +110,12 @@ router.get('/', (req, res) =>{
 
 // Change the user password
 router.patch('/changePassword/:userId', (req, res) => {
+    const {password } = req.body;
+
+    if(!password) {
+      return res.status(400).json({ message: 'Enter all fields.' });
+    }
+
     User.findOneAndUpdate({ _id: req.params.userId } ,{$set: {password: req.body}})
     .then(data => { 
         res.redirect(303, `/api/users/updatePassword/${req.params.userId}`) 

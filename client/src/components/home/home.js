@@ -31,7 +31,7 @@ class Home extends Component {
             form = <LogIn />
             buttonName = 'Change To SignUp'
         }
-        const userHome = ( <div> <NavBar /> </div>);
+        const userHome = ( <div> <NavBar /> <p>Explore the Boolu tools!</p></div>);
         const guestHome = ( <div> {form} <button className="formToggle" onClick={this.toggleForm}> {buttonName} </button> </div> );
 
         return (
