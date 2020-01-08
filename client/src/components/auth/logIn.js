@@ -8,7 +8,7 @@ import "./auth.css";
 
 class LogIn extends Component {
   state = {
-    modal: false,
+    loading: false,
     username: '',
     password: '',
     message: null
@@ -31,8 +31,8 @@ class LogIn extends Component {
       }
     }
 
-    // If authenticated, close modal
-    if (this.state.modal) {
+    // If authenticated, stop loading
+    if (this.state.loading) {
       if (isAuthorized) {
         this.toggle();
       }
@@ -43,7 +43,7 @@ class LogIn extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      loading: !this.state.loading
     });
   };
 
@@ -53,6 +53,9 @@ class LogIn extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    this.setState({
+      loading: true
+    }); 
     const { username, password } = this.state;
     const user = { username, password };
     // Attempt to login
@@ -60,26 +63,35 @@ class LogIn extends Component {
   };
 
   render() {
+    let status = 
+      <li className="submit">
+        <button type="submit">Login</button>
+      </li>
+
+    if(this.state.loading) {
+      status = 
+        <div className={"loader-wrapper"}>
+          <div className={"loader-auth"}></div>
+        </div>
+    }
+    
     return (
       <div>
-        <h2>Login</h2>
         <form onSubmit={this.onSubmit}>
-        <ul className="flex-outer">
-          <li>
-            <label>Username</label>
-            <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
-          </li>
-          <li>
-            <label>Password</label>
-            <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
-          </li>
-          <li>
-            <button type="submit">Login</button>
-          </li>
-        </ul>
-
-
-          
+          <ul className="flex-outer">
+            <div className="form-title">
+              <label>Member Login</label>
+            </div>
+            <li>
+              <label>Username</label>
+              <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
+            </li>
+            <li>
+              <label>Password</label>
+              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+            </li>
+            {status}
+          </ul>   
         </form>
       </div>
     );

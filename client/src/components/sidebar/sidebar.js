@@ -22,7 +22,7 @@ class Sidebar extends Component {
                     teamList = (
                         <div>Sign in to access this feature</div>
                     )
-                }else{
+                }else {
                     teamList = (
                         <div className={"loader-wrapper"}>
                             <div className={"loader"}></div>

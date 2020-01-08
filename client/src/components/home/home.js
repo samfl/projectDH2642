@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import LogIn from '../auth/logIn';
 import SignUp from '../auth/signUp';
 import NavBar from '../navBar/navBar';
-import Profile from '../profile/profile';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import "./home.css";
 
 class Home extends Component {
@@ -32,20 +30,20 @@ class Home extends Component {
             <div>
                 <NavBar />
             </div>
-        )
-
+        );
+        
         const guestHome = (
             <div>
-                <button onClick={this.onClick}>Switch</button>
                 {form}
+                <button onClick={this.onClick}>Switch</button>
             </div>
-        )
+        );
 
         return (
             <div className="wrapper">
                 <div className="containerFlexCenter">
                     <h1 id={"title"}>BỌỌLU</h1>
-                    <p>YOUR PERSONAL FOOTBALL INFORMATION</p>
+                    <p>Your Personal Football Information</p>
                 </div>
 
                 <div className="containerFlexCenter">

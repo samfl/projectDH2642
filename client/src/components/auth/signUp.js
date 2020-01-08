@@ -8,7 +8,7 @@ import "./auth.css";
 
 class SignUp extends Component {
   state = {
-    modal: false,
+    loading: false,
     username: '',
     password: '',
     message: null
@@ -31,8 +31,8 @@ class SignUp extends Component {
       }
     }
 
-    // If authenticated, close modal
-    if (this.state.modal) {
+    // If authenticated, set loading
+    if (this.state.loading) {
       if (isAuthorized) {
         this.toggle();
       }
@@ -43,7 +43,7 @@ class SignUp extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      loading: !this.state.loading
     });
   };
 
@@ -67,11 +67,25 @@ class SignUp extends Component {
   };
 
   render() {    
+    let status = 
+    <li className="submit">
+      <button type="submit">Register</button>
+    </li>
+
+  if(this.state.loading) {
+    status = 
+      <div className={"loader-wrapper"}>
+        <div className={"loader-auth"}></div>
+      </div>
+  }
+
     return (
       <div>
         <form onSubmit={this.onSubmit}>
           <ul className="flex-outer">
-              <h2>SignUp</h2>
+            <div className="form-title">
+              <label>Member Sign up</label>
+            </div>
             <li>
               <label>username</label>
               <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
@@ -80,9 +94,7 @@ class SignUp extends Component {
               <label>Password</label>
               <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
             </li>
-            <li>
-              <button type="submit">Login</button>
-            </li>
+            {status}
           </ul>
         </form>
       </div>
