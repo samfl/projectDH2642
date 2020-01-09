@@ -110,13 +110,20 @@ router.get('/', (req, res) =>{
 
 // Change the user password
 router.patch('/changePassword/:userId', (req, res) => {
-    const { password } = req.body;
+    let password = req.body.password;
 
     if(!password) {
       return res.status(400).json({ message: 'Enter all fields.' });
     }
 
-    User.updateOne({ _id: req.params.userId } ,{$set: {password: req.body.password}})
+    bcrypt.genSalt(15, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+          if(err) throw err;
+          password = hash;
+        })
+      }); 
+
+    User.updateOne({ _id: req.params.userId } ,{$set: {"password": password}})
     .then(data => { 
         //res.redirect(303, `/api/users/updatePassword/${req.params.userId}`);
         res.json();

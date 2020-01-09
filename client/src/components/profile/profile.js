@@ -56,6 +56,7 @@ class Profile extends Component {
                 </div>
             )
         ));
+
         let leagueList = <div className={"sidebar-team"} onClick={this.changeFocusedTeam}> Leagues TODO </div>
         let playerList = <div className={"sidebar-team"} onClick={this.changeFocusedTeam}> Player TODO </div>
 
@@ -71,7 +72,7 @@ class Profile extends Component {
                     <button type="submit">confirm</button>
                 </form>
                 <h2>Favorite teams:</h2>
-                {teamList}
+                {this.props.auth.user.favTeams[0] ? teamList : <p>No favorite teams yet</p>}
                 <h2>Favorite league:</h2>
                 {leagueList}
                 <h2>Favorite players:</h2>
