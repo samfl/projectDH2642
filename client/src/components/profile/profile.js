@@ -14,7 +14,9 @@ class Profile extends Component {
     }
     state = {
         newPassword: '',
-        loading: false
+        repeatPassword: '',
+        loading: false,
+        status: ''
     };
 
     componentDidMount() { }
@@ -29,58 +31,90 @@ class Profile extends Component {
         this.props.dispatch(removeTeam(team, this.props.auth.user._id));
     };
 
-    onChange = e => {
+    pwOnChange = e => {
         this.setState({ newPassword: e.target.value });
-        console.log(e.target.value);
+    };
+
+    newPwOnChange = e => {
+        this.setState({ repeatPassword: e.target.value });
     };
 
     changePassword = e => {
         e.preventDefault();
         e.target.reset();
-        const {newPassword} = this.state; 
-        const password = {
-            "password": newPassword
-        };
-        this.props.dispatch(changePassword(password, this.props.auth.user._id));
+        const {newPassword, repeatPassword } = this.state; 
+        if(newPassword == repeatPassword) {
+            const password = {
+                "password": newPassword
+            };
+            this.props.dispatch(changePassword(password, this.props.auth.user._id));
+            this.setState({
+                status: 1
+            });
+        } else {
+            this.setState({
+                status: 0
+            });
+        }
     };
     
     render() {
         const { user } = this.props.auth;
-        let username = <div className={"sidebar-team"} onClick={this.changeFocusedTeam}> {user.username} </div>
-        let teamList = (
-            this.props.auth.user.favTeams.map(team => (
-                <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
-                    <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
-                    {team.name}
-                    <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
-                </div>
-            )
-        ));
+        const { status } = this.state;
+        let teamList = <p>No favorite teams yet</p>; 
+        if(this.props.auth.user.favTeams) {
+            teamList = (
+                this.props.auth.user.favTeams.map(team => (
+                    <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
+                        <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
+                        {team.name}
+                        <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
+                    </div>
+                )
+            ));
+        }
+        
+        let changePwMsg = null; 
 
-        let leagueList = <div className={"sidebar-team"} onClick={this.changeFocusedTeam}> Leagues TODO </div>
-        let playerList = <div className={"sidebar-team"} onClick={this.changeFocusedTeam}> Player TODO </div>
+        if(status === 1) {
+            changePwMsg = <p className="greenAlert">Password was changed!</p>
+        }
+
+        if(status === 0) {
+            changePwMsg = <p className="redAlert">Passwords does not match</p>
+        }
 
         return (
             <div>
                 <NavBar/>
-                <h2>Username:</h2>
-                {username}
-                <h2>Change password:</h2>
-                <form onSubmit={this.changePassword}>
-                    <label>Password</label>
-                    <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
-                    <button type="submit">confirm</button>
-                </form>
-                <h2>Favorite teams:</h2>
-                {this.props.auth.user.favTeams[0] ? teamList : <p>No favorite teams yet</p>}
-                <h2>Favorite league:</h2>
-                {leagueList}
-                <h2>Favorite players:</h2>
-                {playerList}
+                <div id="profileWrapper">
+                    <div className="centerText">
+                        <div className="formatText">
+                            <h2>{"Username: "}</h2>
+                            <h2> {user.username} </h2>
+                        </div>
+                            <h2>Favorite teams:</h2>
+                            {teamList}
+
+                        <h2>Change password:</h2>
+                        <form onSubmit={this.changePassword}>
+                            <div className="formatText">
+                                <label>Password</label>
+                                <input name="password" id="password" type="password" placeholder="New Password" onChange={this.pwOnChange} required></input>
+                            </div>
+                            <div className="formatText">
+                                <label>Password</label>
+                                <input name="password2" id="password2" type="password" placeholder="Repeat Password" onChange={this.newPwOnChange} required></input>
+                            </div>
+                            <button type="submit" id="changePwBtn">Confirm</button> 
+                        </form>
+                        {changePwMsg}
+                    </div>
+                </div>
             </div>
         );
     }
-}
+} 
 
 const mapStateToProps = state => ({
     auth: state.auth

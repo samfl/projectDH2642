@@ -30,14 +30,19 @@ class Sidebar extends Component {
                 }
                 break;
             case false:
-                teamList = (
-                    this.props.auth.user.favTeams.map(team => (
-                        <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
-                            <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
-                            {team.name}
-                            <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
-                        </div>)
-                    ));
+                if (this.props.auth.user.favTeams) {
+                    teamList = (
+                        this.props.auth.user.favTeams.map(team => (
+                            <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
+                                <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
+                                {team.name}
+                                <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
+                            </div>)
+                        ));
+                } else {
+                    teamList = <b>No teams added yet</b>;
+                }
+
                 break;
             default:
                 teamList = <b>Failed to load data, please try again</b>;

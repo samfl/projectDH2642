@@ -7,37 +7,24 @@ const User = require('../../models/user');
 
 // Save a new user - POST api/users
 router.post('/', (req, res) => {
-  const { username, password } = req.body;
 
-  if(!username || !password) {
-    return res.status(400).json({ message: 'Enter all fields.' });
-  }
+  const { username, password } = req.body;
+  if(!username || !password) return res.status(400).json({ message: 'Enter all fields.' });
 
   User.findOne({ username }).then(user => {
       if(user) return res.status(400).json({ message: 'User exists already.' });
-      
       const newUser = new User({ username, password });
 
-      // Boiler plate: Create salt & hash
+      // Boiler
       bcrypt.genSalt(15, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if(err) throw err;
           newUser.password = hash;
           newUser.save()
             .then(user => {
-              jwt.sign(
-                { _id: user._id },
-                config.get('jwtSecret'),
-                { expiresIn: 3600 },
-                (err, token) => {
+              jwt.sign({ _id: user._id }, config.get('jwtSecret'), { expiresIn: 3600 }, (err, token) => {
                   if(err) throw err;
-                  res.json({
-                    token,
-                    user: {
-                      _id: user._id,
-                      username: user.username
-                    }
-                  });
+                  res.json({token, user: { _id: user._id, username: user.username } });
                 }
               )
             });
