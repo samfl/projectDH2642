@@ -148,9 +148,7 @@ export const removeTeam = (body, userId) => {
   }
 };
 
-export const changePassword = ({ password }, userId) => {
-  const body = JSON.stringify({ password });
-
+export const changePassword = (body, userId) => {
   return function(dispatch){
     const config = { headers: { 'Content-Type': 'application/json' } };
     axios

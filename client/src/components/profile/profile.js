@@ -39,7 +39,7 @@ class Profile extends Component {
         e.target.reset();
         const {newPassword} = this.state; 
         const password = {
-            newPassword
+            "password": newPassword
         };
         this.props.dispatch(changePassword(password, this.props.auth.user._id));
     };

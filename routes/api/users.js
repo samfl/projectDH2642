@@ -116,9 +116,10 @@ router.patch('/changePassword/:userId', (req, res) => {
       return res.status(400).json({ message: 'Enter all fields.' });
     }
 
-    User.findOneAndUpdate({ _id: req.params.userId } ,{$set: {password: req.body}})
+    User.updateOne({ _id: req.params.userId } ,{$set: {password: req.body.password}})
     .then(data => { 
-        res.redirect(303, `/api/users/updatePassword/${req.params.userId}`);
+        //res.redirect(303, `/api/users/updatePassword/${req.params.userId}`);
+        res.json();
         console.log(data);
     })
     .catch(err => {

@@ -2,6 +2,8 @@
     height: 100%;
     flex: 0.7;
     align-self: center;
+    background-color: #f3f3f3;
+    color: #333333;
 }
   .matches select {
     margin-left: auto;
