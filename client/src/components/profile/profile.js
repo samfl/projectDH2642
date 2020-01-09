@@ -22,10 +22,6 @@ class Profile extends Component {
     componentDidMount() { }
     componentWillUnmount() { }
 
-    handleDelete = (username) => {
-        this.props.deleteUser(username);
-    }   
-
     removeClickedTeam = e => {
         const team = JSON.parse(e.target.value);
         this.props.dispatch(removeTeam(team, this.props.auth.user._id));
