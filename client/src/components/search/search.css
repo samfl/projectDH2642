@@ -16,8 +16,8 @@
 #search-bar {
   margin-bottom: 2%;
   display: flex;
+  flex: 0.3;
   align-items: center;
-  height: 50px;
 }
 #search-select{
   margin-left: auto;

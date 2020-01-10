@@ -24,9 +24,9 @@ class Result extends Component{
                 break;
             case false:
                 teamList = this.props.search.teams.map(team =>(
-                    <div key={team.id}>
+                    <div key={team.id} className={"result-team"}>
                         <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
-                        {team.name}
+                        <p>{team.name}</p>
                         <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
                     </div>
                 ));
