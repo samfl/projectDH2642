@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./result.css";
 import { connect } from 'react-redux';
 import { addTeam } from '../../actions/authActions'
-import { imageExists } from "../../images/image";
+import Image from '../image'
 import noTeam from '../../images/noTeam.png'
-
 class Result extends Component{
     constructor(props){
         super(props);
@@ -26,7 +25,7 @@ class Result extends Component{
             case false:
                 teamList = this.props.search.teams.map(team =>(
                     <div key={team.id}>
-                        <img className={"result-img"} src={imageExists(team.crestUrl) ? team.crestUrl : noTeam}/>
+                        <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
                         {team.name}
                         <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
                     </div>
