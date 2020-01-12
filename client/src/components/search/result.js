@@ -32,7 +32,7 @@ class Result extends Component{
                         <div key={team.id} className={"result-team"}>
                             <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
                             <p>{team.name}</p>
-                            <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
+                            <button value={JSON.stringify(Object.assign(team, {league: this.props.search.league}))} onClick={this.addClickedTeam}>Add to favorite</button>
                         </div>
                     ));
                 }
@@ -48,7 +48,6 @@ class Result extends Component{
 
     addClickedTeam = e => {
         const team = JSON.parse(e.target.value);
-        Object.assign(team, {league: this.props.search.league});
         this.props.dispatch(addTeam(team, this.props.user._id));
     };
 }
