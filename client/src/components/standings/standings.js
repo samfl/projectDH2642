@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./standings.css";
 import {connect} from "react-redux";
 import {getStandings} from "../../actions/apiActions";
+import Image from "../image";
+import noTeam from "../../images/noTeam.png";
 
 
 class Standings extends Component{
@@ -34,6 +36,7 @@ class Standings extends Component{
                     <table><tbody>
                     <tr key={this.props.focusedTeam.league}>
                         <th>#</th>
+                        <th> </th>
                         <th>Club</th>
                         <th>MP</th>
                         <th>W</th>
@@ -47,6 +50,7 @@ class Standings extends Component{
                     {this.props.standings.results.table.map(team => (
                         <tr key={team.id}>
                             <td>{team.position}</td>
+                            <td><Image className={"standings-img"} src={team.team.crestUrl} fallback={noTeam}/></td>
                             <td>{team.team.name}</td>
                             <td>{team.playedGames}</td>
                             <td>{team.won}</td>
