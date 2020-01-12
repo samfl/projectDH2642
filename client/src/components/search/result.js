@@ -23,13 +23,19 @@ class Result extends Component{
                     </div>)
                 break;
             case false:
-                teamList = this.props.search.teams.map(team =>(
-                    <div key={team.id} className={"result-team"}>
-                        <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
-                        <p>{team.name}</p>
-                        <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
-                    </div>
-                ));
+                if(this.props.search.teams.length==0){
+                    teamList = (
+                        <h2>No teams found</h2>
+                    )
+                }else{
+                    teamList = this.props.search.teams.map(team =>(
+                        <div key={team.id} className={"result-team"}>
+                            <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
+                            <p>{team.name}</p>
+                            <button value={JSON.stringify(team)} onClick={this.addClickedTeam}>Add to favorite</button>
+                        </div>
+                    ));
+                }
                 break;
             default:
                 teamList = <b>Failed to load data, please try again</b>;
