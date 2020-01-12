@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './navBar.css';
 
-import SignUp from '../auth/signUp';
-import LogIn from '../auth/logIn';
+import SearchBar from '../search/searchBar'
 import LogOut from '../auth/logOut';
 
 class NavBar extends Component {
@@ -18,7 +17,7 @@ class NavBar extends Component {
             <NavLink className="navBar-text" activeClassName="selected" to="/profile">Profile</NavLink>
             <NavLink className="navBar-text" activeClassName="selected" to="/table">Table</NavLink>
             <NavLink className="navBar-text" activeClassName="selected" to="/schedule">Schedule</NavLink>
-            <NavLink className="navBar-text" activeClassName="selected" to="/search">Search</NavLink>
+            <SearchBar/>
             <LogOut />
         </div>
     );

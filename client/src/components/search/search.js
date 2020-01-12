@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Result from "../result/result";
+import Result from "./result";
 import NavBar from "../navBar/navBar";
 import "./search.css";
 import Sidebar from "../sidebar/sidebar";
@@ -22,22 +22,6 @@ class Search extends Component {
                 <div className={"search-body"}>
                     <Sidebar model={this.props.model}/>
                     <div className={"search-body-result"}>
-                        <div id={"search-bar"}>
-                            <select id={"search-select"} onChange={this.onLeagueSelect}>
-                                <option value="PL">Premier League</option>
-                                <option value="ELC">Championship</option>
-                                <option value="PD">La Liga</option>
-                                <option value="SA">Serie A</option>
-                                <option value="BL1">1. Bundesliga</option>
-                                <option value="FL1">Ligue 1</option>
-                                <option value="DED">Eredivisie</option>
-                                <option value="PPL">Primeira Liga</option>
-                            </select>
-                            <input type={"text"} placeholder={"Enter a key word"} id={"search-query"}/>
-                            <button id={"search-btn"} value={this.props.search.query} onClick={this.onSearch}>
-                                    search
-                            </button>
-                        </div>
                         <Result/>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./result.css";
+import "./search.css";
 import { connect } from 'react-redux';
 import { addTeam } from '../../actions/authActions'
 import Image from '../image'
