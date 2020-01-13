@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./sidebar.css";
 import {connect} from "react-redux";
-import {removeTeam, setFocusedTeam} from '../../actions/authActions'
+import {removeTeam} from '../../actions/authActions'
 import noTeam from "../../images/noTeam.png";
 import Image from "../image";
-import {getSchedule, getStandings, getTopScorers} from "../../actions/apiActions";
+import {setFocusedTeam} from "../../actions/apiActions";
 
 class Sidebar extends Component {
     constructor(props) {
@@ -35,11 +35,16 @@ class Sidebar extends Component {
                 break;
             case false:
                 if (this.props.auth.user.favTeams.length > 0) {
-                    const focusedTeam = (this.props.auth.focusedTeam) ? this.props.auth.focusedTeam.id : this.props.auth.user.favTeams[0].id;
+                    let focusedTeam = null;
+                    if(this.props.api.focusedTeam){
+                        focusedTeam = this.props.api.focusedTeam.id
+                    }else{
+                        this.props.dispatch(setFocusedTeam(this.props.auth.user.favTeams[0].id, this.props.auth.user.favTeams[0].league))
+                        focusedTeam = this.props.auth.user.favTeams[0].id;
+                    }
                     teamList = (
                         this.props.auth.user.favTeams.map(team => {
                             if(team.id == focusedTeam){
-                                console.log(focusedTeam)
                                 return (
                                     <div id={team.id} key={team.id} className={"sidebar-team active"}>
                                         <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
@@ -81,13 +86,11 @@ class Sidebar extends Component {
     changeFocusedTeam = e =>{
         const team = JSON.parse(e.target.id);
         this.props.dispatch(setFocusedTeam(team.id, team.league))
-        this.props.dispatch(getSchedule(team.id, team.league, '2019'));
-        this.props.dispatch(getStandings(team.league, '2019'));
-        this.props.dispatch(getTopScorers(team.league, '2019'));
     };
 }
 const mapStateToProps = (state) =>({
-    auth: state.auth
+    auth: state.auth,
+    api: state.api
 });
 export default connect(
     mapStateToProps,

@@ -7,7 +7,8 @@ import {
     TEAMS_LOADING,
     STANDINGS_LOADING,
     SCORERS_LOADING,
-    SCHEDULE_LOADING
+    SCHEDULE_LOADING,
+    FOCUS_CHANGED
 } from "../actions/types";
 
 export const getTeams = (league, query) =>{
@@ -35,7 +36,7 @@ export const getTeams = (league, query) =>{
     }
 };
 
-export const getStandings = (league, season) =>{
+export const getStandings = (league, season='2019') =>{
     return function(dispatch){
         dispatch({
             type: STANDINGS_LOADING
@@ -59,7 +60,7 @@ export const getStandings = (league, season) =>{
     }
 };
 
-export const getTopScorers = (league, season) =>{
+export const getTopScorers = (league, season='2019') =>{
     return function(dispatch){
         dispatch({
             type: SCORERS_LOADING
@@ -80,7 +81,7 @@ export const getTopScorers = (league, season) =>{
     }
 };
 
-export const getSchedule = (teamId, league, season) =>{
+export const getSchedule = (teamId, league, season='2019') =>{
     return function(dispatch){
         dispatch({
             type: SCHEDULE_LOADING
@@ -98,5 +99,20 @@ export const getSchedule = (teamId, league, season) =>{
             .catch(err => {
                 console.log('ERROR', err);
             });
+    }
+};
+
+export const setFocusedTeam = (teamId, league) => {
+    return function(dispatch) {
+        dispatch(getSchedule(teamId, league));
+        dispatch(getStandings(league));
+        dispatch(getTopScorers(league));
+        dispatch({
+            type: FOCUS_CHANGED,
+            payload: {
+                id: teamId,
+                league: league
+            }
+        })
     }
 };

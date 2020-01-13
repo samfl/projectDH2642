@@ -6,7 +6,7 @@ import {
     TEAMS_LOADING,
     STANDINGS_LOADING,
     SCORERS_LOADING,
-    SCHEDULE_LOADING
+    SCHEDULE_LOADING, FOCUS_CHANGED
 } from "../actions/types";
 
 const initialState = {
@@ -32,18 +32,7 @@ const initialState = {
         results: [],
         isLoading: false
     },
-
-    //TODO
-    /* should be in userReducer.js (?)
-    * tells app what table/season/schedule to display. should
-    * be changed when user clicks on a favorite team in the
-    * sidebar.
-    * Hardcoded to display arsenal 2019/20 season */
-    focusedTeam: {
-      league: 'PL',
-      season: '2019',
-        teamID: '57'
-    }
+    focusedTeam: null
 };
 
 export default function (state = initialState, action) {
@@ -100,6 +89,11 @@ export default function (state = initialState, action) {
                     results: action.payload,
                     isLoading: false
                 }
+            };
+        case FOCUS_CHANGED:
+            return {
+                ...state,
+                focusedTeam: action.payload
             };
             default:
             return state;

@@ -31,9 +31,9 @@ class Standings extends Component{
                 break;
             case false:
                 standings = <div>
-                    <h2>{this.props.focusedTeam.league}</h2>
+                    <h2></h2>
                     <table><tbody>
-                    <tr key={this.props.focusedTeam.league}>
+                    <tr>
                         <th>#</th>
                         <th> </th>
                         <th>Club</th>

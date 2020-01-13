@@ -15,7 +15,6 @@ const initialState = {
   isAuthorized: true,
   isLoading: false,
   user: null,
-  focusedTeam: null
 };
 
 export default function(state = initialState, action) {
@@ -77,11 +76,6 @@ export default function(state = initialState, action) {
           password: action.payload
         }
       };
-    case FOCUS_CHANGED:
-      return {
-    ...state,
-    focusedTeam: action.payload
-  };
     default:
       return state;
   }

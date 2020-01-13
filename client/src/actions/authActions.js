@@ -12,8 +12,7 @@ import {
     SIGNUP_FAILURE,
     TEAM_SAVED,
     TEAM_DELETED,
-    PASSWORD_UPDATED,
-    FOCUS_CHANGED
+    PASSWORD_UPDATED
 } from './types';
 
 // Check token & load user
@@ -147,18 +146,6 @@ export const removeTeam = (body, userId) => {
           })
         })
   }
-};
-
-export const setFocusedTeam = (teamId, league) => {
-    return function(dispatch) {
-        dispatch({
-            type: FOCUS_CHANGED,
-            payload: {
-                id: teamId,
-                league: league
-            }
-        })
-    }
 };
 
 export const changePassword = (body, userId) => {
