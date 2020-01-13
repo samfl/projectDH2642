@@ -14,13 +14,7 @@ class SearchBar extends Component{
             searchMade: false
         }
     }
-    componentDidMount() {
-        this.setState({
-            query: "",
-            league: "",
-            searchMade: false
-        });
-    }
+    componentDidMount() {}
     componentWillUnmount() {}
 
     onSubmit = e => {
@@ -73,6 +67,7 @@ class SearchBar extends Component{
         )
     }
 }
+
 export default connect(
     null,
     {getTeams}

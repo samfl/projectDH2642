@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addTeam } from '../../actions/authActions'
 import Image from '../image'
 import noTeam from '../../images/noTeam.png'
+
 class Result extends Component{
     constructor(props){
         super(props);
@@ -15,7 +16,8 @@ class Result extends Component{
 
     render() {
         let teamList = null;
-        switch (this.props.isLoading) {
+        console.log(this.props.search);
+        switch (this.props.search.isLoading) {
             case true:
                 teamList = (
                     <div className={"loader-wrapper"}>
@@ -52,10 +54,11 @@ class Result extends Component{
     };
 }
 
-export default connect(store => {
-    return {
-        isLoading: store.api.search.isLoading,
-        user: store.auth.user,
-        search: store.api.search.results
-    };
-})(Result)
+const mapStateToProps = state =>({
+    search: state.api.search
+});
+
+export default connect(
+    mapStateToProps,
+    null
+)(Result)

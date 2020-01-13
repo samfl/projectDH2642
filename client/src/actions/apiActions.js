@@ -24,7 +24,8 @@ export const getTeams = (league, query) =>{
                 payload: {
                     league: league,
                     query: query,
-                    teams: response.teams.filter(teams => teams.name.toUpperCase().includes(query.toUpperCase()))
+                    teams: response.teams.filter(teams => teams.name.toUpperCase().includes(query.toUpperCase())),
+                    isLoading: false
                     }
                 });
             })

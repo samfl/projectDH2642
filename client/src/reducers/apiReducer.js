@@ -11,11 +11,9 @@ import {
 
 const initialState = {
     search: {
-        results: {
-            query: '',
-            league: 'PL',
-            teams: [],
-        },
+        query: '',
+        league: 'PL',
+        teams: [],
         isLoading: false
     },
     standings: {
@@ -59,10 +57,7 @@ export default function (state = initialState, action) {
             };
         case TEAMS_LOADED:
             return { ...state,
-                search: {
-                    results: action.payload,
-                    isLoading: false,
-                }
+                search: action.payload
             };
         case STANDINGS_LOADING:
             return { ...state,
