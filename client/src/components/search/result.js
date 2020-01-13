@@ -16,7 +16,6 @@ class Result extends Component{
 
     render() {
         let teamList = null;
-        console.log(this.props.search);
         switch (this.props.search.isLoading) {
             case true:
                 teamList = (
@@ -55,7 +54,8 @@ class Result extends Component{
 }
 
 const mapStateToProps = state =>({
-    search: state.api.search
+    search: state.api.search,
+    user: state.auth.user
 });
 
 export default connect(

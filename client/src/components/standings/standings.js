@@ -14,7 +14,6 @@ class Standings extends Component{
     }
 
     componentDidMount() {
-        this.props.dispatch(getStandings(this.props.focusedTeam.league, '2019'))
     }
 
     componentWillUnmount() { }

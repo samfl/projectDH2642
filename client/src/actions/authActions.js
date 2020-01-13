@@ -2,17 +2,18 @@ import axios from 'axios';
 import { returnErrors } from './errorActions';
 
 import {
-  USER_LOADED,
-  USER_LOADING,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT_SUCCESS,
-  SIGNUP_SUCCESS,
-  SIGNUP_FAILURE,
-  TEAM_SAVED,
-  TEAM_DELETED,
-  PASSWORD_UPDATED
+    USER_LOADED,
+    USER_LOADING,
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT_SUCCESS,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAILURE,
+    TEAM_SAVED,
+    TEAM_DELETED,
+    PASSWORD_UPDATED,
+    FOCUS_CHANGED
 } from './types';
 
 // Check token & load user
@@ -146,6 +147,18 @@ export const removeTeam = (body, userId) => {
           })
         })
   }
+};
+
+export const setFocusedTeam = (teamId, league) => {
+    return function(dispatch) {
+        dispatch({
+            type: FOCUS_CHANGED,
+            payload: {
+                id: teamId,
+                league: league
+            }
+        })
+    }
 };
 
 export const changePassword = (body, userId) => {

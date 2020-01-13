@@ -11,7 +11,6 @@ class Matches extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getSchedule('57', 'PL', '2019'))
     }
 
     componentWillUnmount() { }

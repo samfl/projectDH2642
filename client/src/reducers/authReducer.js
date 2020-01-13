@@ -7,14 +7,15 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE, TEAM_ADDED, TEAM_SAVED, TEAM_REMOVED, TEAM_DELETED
+  SIGNUP_FAILURE, TEAM_ADDED, TEAM_SAVED, TEAM_REMOVED, TEAM_DELETED, FOCUS_CHANGED
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthorized: true,
   isLoading: false,
-  user: null
+  user: null,
+  focusedTeam: null
 };
 
 export default function(state = initialState, action) {
@@ -76,6 +77,11 @@ export default function(state = initialState, action) {
           password: action.payload
         }
       };
+    case FOCUS_CHANGED:
+      return {
+    ...state,
+    focusedTeam: action.payload
+  };
     default:
       return state;
   }

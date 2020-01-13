@@ -8,6 +8,8 @@ export const STANDINGS_LOADED = 'STANDINGS_LOADED';
 export const SCORERS_LOADED = 'SCORERS_LOADED';
 export const SCHEDULE_LOADED = 'SCHEDULE_LOADED';
 
+export const FOCUS_CHANGED = 'FOCUS_CHANGED';
+
 
 export const AUTH_ERROR = "AUTH_ERROR";
 export const GET_ERRORS = 'GET_ERRORS';

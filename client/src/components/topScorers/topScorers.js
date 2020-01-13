@@ -11,7 +11,6 @@ class topScorers extends Component{
     }
 
     componentDidMount() {
-        this.props.dispatch(getTopScorers(this.props.focusedTeam.league, this.props.focusedTeam.season));
     }
 
     componentWillUnmount() { }
