@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Database Configuration
-const mongoDB = process.env.MONGODB_URI;
+const mongoDB = process.env.MONGODB_URI || "mongodb://sam:kanye123@ds263368.mlab.com:63368/heroku_hf438kbj";
 
 // MongoDB Connection with arguments to remove deprecation warnings
 mongoose
