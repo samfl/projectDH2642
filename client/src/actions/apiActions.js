@@ -12,7 +12,12 @@ import {
 } from "../actions/types";
 
 const BASE_URL = "https://api.football-data.org/v2";
-const httpOptions = JSON.parse(process.env.httpOptions);
+const httpOptions = {
+    headers: {
+        "X-Auth-Token": process.env.httpOptions
+    }
+};
+console.log(httpOptions);
 
 export const getTeams = (league, query) =>{
     return function(dispatch){
