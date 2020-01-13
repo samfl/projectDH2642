@@ -1,4 +1,4 @@
-import {BASE_URL, httpOptions} from "../apiConfig/apiConfig";
+// import {BASE_URL, httpOptions} from "../apiConfig/apiConfig";
 import {
     TEAMS_LOADED,
     STANDINGS_LOADED,
@@ -10,6 +10,9 @@ import {
     SCHEDULE_LOADING,
     FOCUS_CHANGED
 } from "../actions/types";
+
+const BASE_URL = process.env.BASE_URL; 
+const httpOptions = process.env.httpOptions; 
 
 export const getTeams = (league, query) =>{
     return function(dispatch){

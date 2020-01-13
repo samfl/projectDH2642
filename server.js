@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const config = require('config');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 
 // Database Configuration
-const mongoDB = config.get('mongoDbConStr');
+const mongoDB = process.env.MONGODB_URI;
 
 // MongoDB Connection with arguments to remove deprecation warnings
 mongoose
