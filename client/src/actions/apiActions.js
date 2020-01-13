@@ -11,7 +11,7 @@ import {
     FOCUS_CHANGED
 } from "../actions/types";
 
-const BASE_URL = process.env.BASE_URL; 
+const BASE_URL = "http://api.football-data.org/v2";
 const httpOptions = process.env.httpOptions; 
 
 export const getTeams = (league, query) =>{
