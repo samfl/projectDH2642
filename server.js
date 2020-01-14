@@ -19,6 +19,9 @@ mongoose
 // Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.get('/configvars', (req, res) =>{
+  res.json(process.env.API_CONFIG)
+});
 
 // Starts the server and listens on 'port' for connections
 app.listen(port, () => console.log("Server started on port " + port + " .."));

@@ -1,4 +1,5 @@
 // import {BASE_URL, httpOptions} from "../apiConfig/apiConfig";
+import axios from 'axios';
 import {
     TEAMS_LOADED,
     STANDINGS_LOADED,
@@ -10,6 +11,7 @@ import {
     SCHEDULE_LOADING,
     FOCUS_CHANGED
 } from "../actions/types";
+require('dotenv').config();
 const BASE_URL = "https://api.football-data.org/v2";
 const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const httpOptions = {
@@ -22,12 +24,16 @@ const httpOptions = {
 };
 
 export const getTeams = (league, query) =>{
-    console.log(process.env.httpOptions);
     return function(dispatch){
         dispatch({
             type: TEAMS_LOADING
         });
         const targetURL = `${BASE_URL}/competitions/${league}/teams`;
+        axios
+            .get('/configvars')
+            .then(res => {
+                console.log(res);
+            });
         fetch(proxyURL + targetURL, httpOptions)
             .then(response => response.json())
             .then(response =>{
