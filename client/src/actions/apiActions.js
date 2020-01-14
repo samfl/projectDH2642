@@ -15,7 +15,8 @@ const BASE_URL = "https://api.football-data.org/v2";
 const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const httpOptions = {
     headers: {
-        "X-Auth-Token": process.env.httpOptions
+        "X-Auth-Token": process.env.httpOptions,
+        "X-Requested-With": ""
     }
 };
 
