@@ -10,14 +10,15 @@ import {
     SCHEDULE_LOADING,
     FOCUS_CHANGED
 } from "../actions/types";
-
 const BASE_URL = "https://api.football-data.org/v2";
 const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const httpOptions = {
+    method: "GET",
     headers: {
-        "X-Auth-Token": process.env.httpOptions,
-        "X-Requested-With": ""
-    }
+        "X-Auth-Token": `${process.env.httpOptions}`,
+        "X-Requested-With": "\"\""
+    },
+    redirect: "follow"
 };
 
 export const getTeams = (league, query) =>{
