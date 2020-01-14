@@ -24,9 +24,6 @@ export const getTeams = (league, query) =>{
             .get('/configvars')
             .then(res => {
                 const config = JSON.parse(res.data);
-                console.log("response: " + res);
-                console.log("response data: "+ res.data)
-                console.log("config: " + config);
                 const targetURL = `${BASE_URL}/competitions/${league}/teams`;
                 fetch(proxyURL + targetURL, config)
                     .then(response => response.json())
