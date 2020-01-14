@@ -2,18 +2,14 @@
 Boolu is an application for looking up football leagues and matches of some of the worlds top leagues/teams.
 
 ## What we have done
-The app is connected to the backend (MongoDB).
+The app is connected to the backend (MongoDB). Where the username, encrypted password and the users favorite team is stored.
 Methods for fetching schedule, league standings and top scorers from the API. Users are able to fetch data from the API.
-All screens have the necessary components, except for the Profile screen.
+All screens have the necessary components, featurs and is styled for computer screens. 
+A few things are implmented to improve the usability, sush as the current screen showing is highlighted in the navbar.
+The screens if the user is not logged in is also handled.
 
 ## What we plan to do
-#### Layout for all screens.
-#### Improve usability
-Store users favorite teams in the backend.
-the user should be able to select which schedule/table to show from their favorite teams. We plan to do this by having the user click on a team in the sidebar.
-Highlight the current screen showing in the navbar.
-Add the profile screen.
-Only show the screens (except for home) if the user is logged in.
+Style the screens so they also are adapted for mobile sized screens.
 
 ## File Structure
 All the react related code is inside a folder called client, while the backend related code is in the root of the project file.
