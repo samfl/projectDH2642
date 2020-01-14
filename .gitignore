@@ -8,3 +8,4 @@
 /client/src/apiConfig
 .idea
 Procfile
+.env

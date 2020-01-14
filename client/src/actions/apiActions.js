@@ -12,20 +12,20 @@ import {
 } from "../actions/types";
 
 const BASE_URL = "https://api.football-data.org/v2";
+const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const httpOptions = {
     headers: {
         "X-Auth-Token": process.env.httpOptions
     }
 };
-console.log(httpOptions);
 
 export const getTeams = (league, query) =>{
     return function(dispatch){
         dispatch({
             type: TEAMS_LOADING
         });
-        const url = `${BASE_URL}/competitions/${league}/teams`;
-        fetch(url, httpOptions)
+        const targetURL = `${BASE_URL}/competitions/${league}/teams`;
+        fetch(proxyURL + targetURL, httpOptions)
             .then(response => response.json())
             .then(response =>{
             dispatch({
@@ -49,8 +49,8 @@ export const getStandings = (league, season='2019') =>{
         dispatch({
             type: STANDINGS_LOADING
         });
-        const url = `${BASE_URL}/competitions/${league}/standings?season=${season}`
-        fetch(url, httpOptions)
+        const targetURL = `${BASE_URL}/competitions/${league}/standings?season=${season}`
+        fetch(proxyURL + targetURL, httpOptions)
             .then(response => response.json())
             .then(response =>{
                 dispatch({
@@ -73,8 +73,8 @@ export const getTopScorers = (league, season='2019') =>{
         dispatch({
             type: SCORERS_LOADING
         });
-        const url = `${BASE_URL}/competitions/${league}/scorers?season=${season}`
-        fetch(url, httpOptions)
+        const targetURL = `${BASE_URL}/competitions/${league}/scorers?season=${season}`
+        fetch(proxyURL + targetURL, httpOptions)
             .then(response => response.json())
             .then(response =>{
                 dispatch({
@@ -94,8 +94,8 @@ export const getSchedule = (teamId, league, season='2019') =>{
         dispatch({
             type: SCHEDULE_LOADING
         });
-        const url = `${BASE_URL}/competitions/${league}/matches?season=${season}`;
-        fetch(url, httpOptions)
+        const targetURL = `${BASE_URL}/competitions/${league}/matches?season=${season}`;
+        fetch(proxyURL + targetURL, httpOptions)
             .then(response => response.json())
             .then(response => {
                 dispatch({
