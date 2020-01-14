@@ -15,13 +15,14 @@ const proxyURL = 'https://cors-anywhere.herokuapp.com/';
 const httpOptions = {
     method: "GET",
     headers: {
-        "X-Auth-Token": `${process.env.httpOptions}`,
+        "X-Auth-Token": "8ea8195d0b014e859507577cdbfe683d",
         "X-Requested-With": "\"\""
     },
     redirect: "follow"
 };
 
 export const getTeams = (league, query) =>{
+    console.log(process.env.httpOptions);
     return function(dispatch){
         dispatch({
             type: TEAMS_LOADING
