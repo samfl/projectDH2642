@@ -1,4 +1,3 @@
-// import {BASE_URL, httpOptions} from "../apiConfig/apiConfig";
 import axios from 'axios';
 import {
     TEAMS_LOADED,
