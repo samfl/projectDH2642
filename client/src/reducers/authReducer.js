@@ -7,7 +7,13 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE, TEAM_ADDED, TEAM_SAVED, TEAM_REMOVED, TEAM_DELETED, FOCUS_CHANGED
+  SIGNUP_FAILURE,
+  TEAM_ADDED,
+  TEAM_SAVED,
+  TEAM_REMOVED,
+  TEAM_DELETED,
+  FOCUS_CHANGED,
+  INPUT_CHANGED
 } from '../actions/types';
 
 const initialState = {
@@ -15,6 +21,7 @@ const initialState = {
   isAuthorized: true,
   isLoading: false,
   user: null,
+  usernameInput: null
 };
 
 export default function(state = initialState, action) {
@@ -75,6 +82,11 @@ export default function(state = initialState, action) {
           ...state.user,
           password: action.payload
         }
+      };
+    case INPUT_CHANGED:
+      return {
+        ...state,
+        usernameInput: action.payload
       };
     default:
       return state;

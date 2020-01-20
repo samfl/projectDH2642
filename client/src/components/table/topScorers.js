@@ -34,7 +34,7 @@ class topScorers extends Component{
                     <th>Goals</th>
                 </tr>
                 {this.props.scorers.results.map(scorer => (
-                    <tr key={scorer.id}>
+                    <tr key={scorer.id} className={(scorer.team.id == this.props.focusedTeam.id) ? 'focusedRow' : null}>
                         <td>{scorer.player.name}</td>
                         <td>{scorer.team.name}</td>
                         <td>{scorer.numberOfGoals}</td>

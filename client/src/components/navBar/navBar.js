@@ -14,10 +14,10 @@ class NavBar extends Component {
     const userMenu = (
         <div className="navBar">
             <strong>{user ? `Welcome ${user.username}!` : ''}</strong>
+            <SearchBar/>
             <NavLink className="navBar-text" activeClassName="selected" to="/profile">Profile</NavLink>
             <NavLink className="navBar-text" activeClassName="selected" to="/table">Table</NavLink>
             <NavLink className="navBar-text" activeClassName="selected" to="/schedule">Schedule</NavLink>
-            <SearchBar/>
             <LogOut />
         </div>
     );

@@ -4,3 +4,7 @@
 .standings-img{
     height: 20px;
 }
+.focusedRow{
+    font-weight: bold;
+    color: black;
+}

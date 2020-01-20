@@ -25,12 +25,20 @@ class Matches extends Component {
                     </div>)
                 break;
             case false:
-                matches = <table><tbody>{this.props.schedule.results.map(match=> (
+                matches = <table><tbody>
+                <tr>
+                    <th>Round</th>
+                    <th>Home Team</th>
+                    <th>Result</th>
+                    <th>Away Team</th>
+                    <th>Date</th>
+                </tr>
+                {this.props.schedule.results.map(match=> (
                         <tr className={"matches-match"} key={match.id}>
                             <td>{match.matchday}</td>
-                            <td>{match.homeTeam.name}</td>
+                            <td className={(match.homeTeam.id == this.props.focusedTeam.id) ? 'match-focusedteam' : null}>{match.homeTeam.name}</td>
                             <td>{match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}</td>
-                            <td>{match.awayTeam.name}</td>
+                            <td className={(match.awayTeam.id == this.props.focusedTeam.id) ? 'match-focusedteam' : null}>{match.awayTeam.name}</td>
                             <td>{(new Date(match.utcDate)).toUTCString()}</td>
                         </tr>
                 ))}</tbody></table>
@@ -62,6 +70,7 @@ class Matches extends Component {
 
 export default connect(store => {
     return {
-        schedule: store.api.schedule
+        schedule: store.api.schedule,
+        focusedTeam: store.api.focusedTeam
     };
 })(Matches)

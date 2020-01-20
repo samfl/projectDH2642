@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Matches from "../matches/matches";
+import Matches from "./matches";
 import Sidebar from "../sidebar/sidebar";
 import NavBar from "../navBar/navBar";
 import "./schedule.css";

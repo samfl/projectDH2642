@@ -12,7 +12,8 @@ import {
     SIGNUP_FAILURE,
     TEAM_SAVED,
     TEAM_DELETED,
-    PASSWORD_UPDATED
+    PASSWORD_UPDATED,
+    INPUT_CHANGED
 } from './types';
 
 // Check token & load user
@@ -158,7 +159,15 @@ export const changePassword = (body, userId) => {
             type: PASSWORD_UPDATED,
             payload: res.data
           });
-          console.log(res.data);
         })
   }
+};
+
+export const updateUserInput = (usernameInput) => {
+    return function(dispatch){
+        dispatch({
+            type: INPUT_CHANGED,
+            payload: usernameInput
+        });
+    }
 };

@@ -2,6 +2,7 @@ html, body, #root{
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Garamond;
 }
 h1, h2, h3{
   margin: 0;

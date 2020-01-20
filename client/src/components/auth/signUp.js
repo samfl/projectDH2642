@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveUser } from '../../actions/authActions';
+import { saveUser, updateUserInput} from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
 import "./auth.css";
@@ -8,8 +8,8 @@ import "./auth.css";
 class SignUp extends Component {
   state = {
     loading: false,
-    username: '',
     password: '',
+    confirmPassword: '',
     message: null
   };
 
@@ -37,25 +37,32 @@ class SignUp extends Component {
     });
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  usernameChanged = e => {
+    this.props.updateUserInput(e.target.value);
+  };
+
+  passwordChanged = e => {
+    this.setState({[e.target.name]: e.target.value});
   };
 
   onSubmit = e => {
     e.preventDefault();
     e.target.reset();
-    this.setState({
-      loading: true,
-      message: null
-    }); 
-    const { username, password } = this.state;
+    const { password, confirmPassword } = this.state;
+    if(password===confirmPassword) {
+      this.setState({
+        loading: true,
+        message: null
+      });
 
-    const newUser = {
-      username,
-      password
-    };
+      const newUser = {
+        username: this.props.usernameInput,
+        password
+      };
 
-    this.props.saveUser(newUser);
+      this.props.saveUser(newUser);
+    }
+    else {alert('The password and confirmation password do not match. Please try again')}
   };
 
   render() {    
@@ -65,12 +72,12 @@ class SignUp extends Component {
     if (this.state.loading) {
       status = <div className={"loader-wrapper"}> <div className={"loader-auth"}></div></div>
     } else {
-      status = <li className="submit"> <button type="submit">Signup</button></li> ; 
+      status = <li className="submit"> <button className={"submit-button"} type="submit">Signup</button></li> ;
     }
 
     if (this.state.message && this.state.loading) {
       errorMessage = <p className="authErrorAlert">{this.state.message}</p>
-      status = <li className="submit"> <button type="submit">Signup</button></li> ; 
+      status = <li className="submit"> <button className={"submit-button"} type="submit">Signup</button></li> ;
     } else {
       errorMessage = null; 
     }
@@ -84,11 +91,13 @@ class SignUp extends Component {
             </div>
             <li>
               <label>username</label>
-              <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
+              <input name="username" id="username" type="text" placeholder="Enter username" value={this.props.usernameInput} onChange={this.usernameChanged} required></input>
             </li>
             <li>
               <label>Password</label>
-              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.passwordChanged} required></input>
+              <label>Re-enter Password</label>
+              <input name="confirmPassword" id="confirmPassword" type="password" placeholder="Enter Password" onChange={this.passwordChanged} required></input>
             </li>
             {status}
             {errorMessage}
@@ -101,10 +110,11 @@ class SignUp extends Component {
 
 const mapStateToProps = state => ({
   isAuthorized: state.auth.isAuthorized,
-  error: state.error
+  error: state.error,
+  usernameInput: state.auth.usernameInput
 });
 
 export default connect(
   mapStateToProps,
-  { saveUser, clearErrors }
+  { saveUser, clearErrors, updateUserInput }
 )(SignUp);

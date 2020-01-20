@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Standings from "../standings/standings";
-import TopScorers from "../topScorers/topScorers";
+import Standings from "./standings";
+import TopScorers from "./topScorers";
 import Sidebar from "../sidebar/sidebar";
 import NavBar from "../navBar/navBar";
 import "./table.css";

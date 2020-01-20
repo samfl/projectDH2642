@@ -10,6 +10,7 @@ export const SCHEDULE_LOADED = 'SCHEDULE_LOADED';
 
 export const FOCUS_CHANGED = 'FOCUS_CHANGED';
 
+export const INPUT_CHANGED = 'INPUT_CHANGED';
 
 export const AUTH_ERROR = "AUTH_ERROR";
 export const GET_ERRORS = 'GET_ERRORS';

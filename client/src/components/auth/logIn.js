@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { login, updateUserInput } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 import "./auth.css";
 
 class LogIn extends Component {
   state = {
     loading: false,
-    username: '',
     password: '',
     message: null
   };
@@ -36,8 +35,12 @@ class LogIn extends Component {
     });
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  usernameChanged = e => {
+    this.props.updateUserInput(e.target.value);
+  };
+
+  passwordChanged = e => {
+    this.setState({password: e.target.value});
   };
 
   onSubmit = e => {
@@ -47,8 +50,8 @@ class LogIn extends Component {
       loading: true,
       message: null
     }); 
-    const { username, password } = this.state;
-    const user = { username, password };
+    const { password } = this.state;
+    const user = { username: this.props.usernameInput, password };
     this.props.login(user);
   };
 
@@ -64,7 +67,7 @@ class LogIn extends Component {
 
     if (this.state.message && this.state.loading) {
       errorMessage = <p className="authErrorAlert">{this.state.message}</p>
-      status = <li className="submit"> <button type="submit">Login</button></li> ; 
+      status = <li className="submit"> <button type="submit">Login</button></li> ;
     } else {
       errorMessage = null; 
     }
@@ -78,11 +81,11 @@ class LogIn extends Component {
             </div>
             <li>
               <label>Username</label>
-              <input name="username" id="username" type="text" placeholder="Enter username" onChange={this.onChange} required></input>
+              <input name="username" id="username" type="text" placeholder="Enter username" value={this.props.usernameInput} onChange={this.usernameChanged} required></input>
             </li>
             <li>
               <label>Password</label>
-              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.onChange} required></input>
+              <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.passwordChanged} required></input>
             </li>
             {status}
             {errorMessage}
@@ -95,10 +98,11 @@ class LogIn extends Component {
 
 const mapStateToProps = state => ({
   isAuthorized: state.auth.isAuthorized,
-  error: state.error
+  error: state.error,
+  usernameInput: state.auth.usernameInput
 });
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors }
+  { login, clearErrors, updateUserInput }
 )(LogIn);

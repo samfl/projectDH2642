@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getStandings} from "../../actions/apiActions";
 import Image from "../image";
 import noTeam from "../../images/noTeam.png";
+import logIn from "../auth/logIn";
 
 
 class Standings extends Component{
@@ -30,8 +31,9 @@ class Standings extends Component{
                 );
                 break;
             case false:
+
                 standings = <div>
-                    <h2></h2>
+                    <h2>{this.props.focusedTeam ? this.props.focusedTeam.league : null}</h2>
                     <table><tbody>
                     <tr>
                         <th>#</th>
@@ -47,7 +49,7 @@ class Standings extends Component{
                         <th>PTS</th>
                     </tr>
                     {this.props.standings.results.table.map(team => (
-                        <tr key={team.id}>
+                        <tr key={team.team.id} className={(team.team.id==this.props.focusedTeam.id) ? 'focusedRow' : ''}>
                             <td>{team.position}</td>
                             <td><Image className={"standings-img"} src={team.team.crestUrl} fallback={noTeam}/></td>
                             <td>{team.team.name}</td>

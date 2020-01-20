@@ -23,37 +23,39 @@ class Home extends Component {
     render() {
         const { isAuthorized } = this.props.auth;
         let form = null; 
-        let buttonName = null; 
+        let linkName = null;
         if(this.state.formValue) {
             form = <SignUp />
-            buttonName = 'Change To Login'
+            linkName = 'Already have an account? Log in'
         } else {
             form = <LogIn />
-            buttonName = 'Change To SignUp'
+            linkName = "Don't have an account? Sign up"
         }
         const userHome = ( <div> <NavBar /> <p>Explore the Boolu tools!</p></div>);
-        const guestHome = ( <div> {form} <button className="formToggle" onClick={this.toggleForm}> {buttonName} </button> </div> );
+        const guestHome = ( <div> {form} <a className="formToggle" onClick={this.toggleForm}> {linkName} </a> </div> );
+        const guestHeader =
+            (<div className="headerWrapper">
+                <div className="textInfo">
+                    <ul>
+                        <li>Your personal football stats</li>
+                        <li>League tables for your favorite team</li>
+                        <li>Match schedule for your favorite team</li>
+                    </ul>
+                </div>
+                <img id="headerImage" src={footballPlayer} alt="football player" />
+            </div>);
 
         return (
             <div className="wrapper">
                 <div className="containerFlexCenter">
                     <h1 id={"title"}>BỌỌLU</h1>
-                    <div className="headerWrapper">
-                        <div className="textInfo">
-                            <ul>
-                                <li>Your personal football stats</li>
-                                <li>League tables for your favorite team</li>
-                                <li>Match schedule for your favorite team</li>
-                            </ul>
-                        </div>
-                        <img id="headerImage" src={footballPlayer} alt="football player" />
-                    </div>
-                   
-                </div>
+                    {isAuthorized? null : guestHeader }
+
 
                 <div className="containerFlexCenter">
                     {isAuthorized? userHome: guestHome}
                 </div>
+            </div>
             </div>
         );
     }

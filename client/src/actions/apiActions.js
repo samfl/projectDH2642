@@ -10,6 +10,8 @@ import {
     SCHEDULE_LOADING,
     FOCUS_CHANGED
 } from "../actions/types";
+require('dotenv').config();
+
 
 const BASE_URL = "https://api.football-data.org/v2";
 const proxyURL = 'https://cors-anywhere.herokuapp.com/';

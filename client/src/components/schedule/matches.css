@@ -16,3 +16,6 @@
 .matches-match{
     text-align: center;
 }
+.match-focusedteam{
+    font-weight: bold;
+}
