@@ -43,8 +43,8 @@ class Standings extends Component{
                         <th>W</th>
                         <th>D</th>
                         <th>L</th>
-                        <th>GF</th>
-                        <th>GA</th>
+                        <th className={"standings-del"}>GF</th>
+                        <th className={"standings-del"}>GA</th>
                         <th>GD</th>
                         <th>PTS</th>
                     </tr>
@@ -57,8 +57,8 @@ class Standings extends Component{
                             <td>{team.won}</td>
                             <td>{team.draw}</td>
                             <td>{team.lost}</td>
-                            <td>{team.goalsFor}</td>
-                            <td>{team.goalsAgainst}</td>
+                            <td className={"standings-del"}>{team.goalsFor}</td>
+                            <td className={"standings-del"}>{team.goalsAgainst}</td>
                             <td>{team.goalDifference}</td>
                             <td>{team.points}</td>
                         </tr>

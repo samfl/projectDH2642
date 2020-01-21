@@ -79,6 +79,18 @@
   outline: none;
 }
 @media screen and (max-width: 620px) {
+  .searchBox {
+    width: 70%;
+  }
+  .searchInput {
+    width: 70%;
+  }
+  .searchSelect {
+    width: 70%;
+  }
+  .search-body {
+    flex-direction: column;
+  }
   .searchBox:hover > .searchInput {
     width: 150px;
     padding: 0 6px;

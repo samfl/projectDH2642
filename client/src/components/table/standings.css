@@ -8,3 +8,15 @@
     font-weight: bold;
     color: black;
 }
+@media screen and (max-width: 750px) {
+  .Standings {
+    display: flex;
+    justify-content: center;
+  }
+  .standings-img, .standings-del {
+    display: none;
+    width: none;
+    padding: none;
+    margin: none;
+  }
+}
