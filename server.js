@@ -7,6 +7,12 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  // Express serve up index.html file if it doesn't recognize route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 // Database Configuration
 const mongoDB = process.env.MONGODB_URI || "mongodb://sam:kanye123@ds263368.mlab.com:63368/heroku_hf438kbj";
