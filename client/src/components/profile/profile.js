@@ -38,7 +38,7 @@ class Profile extends Component {
     changePassword = e => {
         e.preventDefault();
         e.target.reset();
-        const {newPassword, repeatPassword } = this.state; 
+        const {newPassword, repeatPassword } = this.state;
         if(newPassword == repeatPassword) {
             const password = {
                 "password": newPassword
@@ -53,24 +53,27 @@ class Profile extends Component {
             });
         }
     };
-    
+
     render() {
-        const { user } = this.props.auth;
+        let { user } = <p>Unable to find user</p>;
         const { status } = this.state;
-        let teamList = <p>No favorite teams yet</p>; 
-        if(this.props.auth.user.favTeams) {
-            teamList = (
-                this.props.auth.user.favTeams.map(team => (
-                    <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
-                        <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
-                        {team.name}
-                        <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
-                    </div>
-                )
-            ));
+        let teamList = <p>No favorite teams yet</p>;
+        switch(this.props.auth.user == null) {
+          case false:
+          user = this.props.auth.user.username;
+            if(this.props.auth.user.favTeams) {
+              teamList = (
+                  this.props.auth.user.favTeams.map(team => (
+                      <div key={team.id} className={"sidebar-team"} onClick={this.changeFocusedTeam}>
+                          <Image className={"result-img"} src={team.crestUrl} fallback={noTeam}/>
+                          {team.name}
+                          <button value={JSON.stringify(team)} onClick={this.removeClickedTeam}>Remove</button>
+                      </div>
+                  )
+              ));
+          }
         }
-        
-        let changePwMsg = null; 
+        let changePwMsg = null;
 
         if(status === 1) {
             changePwMsg = <p className="greenAlert">Password was changed!</p>
@@ -87,11 +90,10 @@ class Profile extends Component {
                     <div className="centerText">
                         <div className="formatText">
                             <h2>{"Username: "}</h2>
-                            <h2> {user.username} </h2>
+                            <h2> {user} </h2>
                         </div>
                             <h2>Favorite teams:</h2>
                             {teamList}
-
                         <h2>Change password:</h2>
                         <form onSubmit={this.changePassword}>
                             <div className="formatText">
@@ -102,7 +104,7 @@ class Profile extends Component {
                                 <label>Password</label>
                                 <input name="password2" id="password2" type="password" placeholder="Repeat Password" onChange={this.newPwOnChange} required></input>
                             </div>
-                            <button type="submit" id="changePwBtn">Confirm</button> 
+                            <button type="submit" id="changePwBtn">Confirm</button>
                         </form>
                         {changePwMsg}
                     </div>
@@ -110,12 +112,12 @@ class Profile extends Component {
             </div>
         );
     }
-} 
+}
 
 const mapStateToProps = state => ({
     auth: state.auth
   });
-  
+
   export default connect(
     mapStateToProps,
     null
