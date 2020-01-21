@@ -65,9 +65,9 @@ class SignUp extends Component {
     else {alert('The password and confirmation password do not match. Please try again')}
   };
 
-  render() {    
-    let status = null; 
-    let errorMessage = null; 
+  render() {
+    let status = null;
+    let errorMessage = null;
 
     if (this.state.loading) {
       status = <div className={"loader-wrapper"}> <div className={"loader-auth"}></div></div>
@@ -79,7 +79,7 @@ class SignUp extends Component {
       errorMessage = <p className="authErrorAlert">{this.state.message}</p>
       status = <li className="submit"> <button className={"submit-button"} type="submit">Signup</button></li> ;
     } else {
-      errorMessage = null; 
+      errorMessage = null;
     }
 
     return (
@@ -96,6 +96,8 @@ class SignUp extends Component {
             <li>
               <label>Password</label>
               <input name="password" id="password" type="password" placeholder="Enter Password" onChange={this.passwordChanged} required></input>
+            </li>
+            <li>
               <label>Re-enter Password</label>
               <input name="confirmPassword" id="confirmPassword" type="password" placeholder="Enter Password" onChange={this.passwordChanged} required></input>
             </li>
