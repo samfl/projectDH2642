@@ -64,7 +64,7 @@ class Matches extends Component {
             </div>)
     }
     setScheduleSeason = e =>{
-        this.props.dispatch(getSchedule('57', 'PL',e.target.value));
+        this.props.dispatch(getSchedule(this.props.focusedTeam.id, this.props.focusedTeam.league, e.target.value));
     };
 }
 
