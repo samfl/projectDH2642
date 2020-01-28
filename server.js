@@ -8,10 +8,6 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-
-  app.get('/', (request, response) => {
-    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
 }
 // Database Configuration
 const mongoDB = process.env.MONGODB_URI || "mongodb://sam:kanye123@ds263368.mlab.com:63368/heroku_hf438kbj";
@@ -25,6 +21,9 @@ mongoose
 // Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 app.get('/configvars', (req, res) =>{
   res.json(process.env.API_CONFIG)
 });
