@@ -7,11 +7,6 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-
-  const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
 }
 // Database Configuration
 const mongoDB = process.env.MONGODB_URI || "mongodb://sam:kanye123@ds263368.mlab.com:63368/heroku_hf438kbj";
@@ -25,7 +20,9 @@ mongoose
 // Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/conf', require('./routes/api/conf'));
+app.get('/configvars', (req, res) =>{
+  res.json(process.env.API_CONFIG)
+});
 
 // Starts the server and listens on 'port' for connections
 app.listen(port, () => console.log("Server started on port " + port + " .."));
