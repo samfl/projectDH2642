@@ -27,7 +27,7 @@ class Matches extends Component {
             case false:
                 matches = <table><tbody>
                 <tr>
-                    <th>Round</th>
+                    <th className={"matches-del"}>Round</th>
                     <th>Home Team</th>
                     <th>Result</th>
                     <th>Away Team</th>
@@ -35,7 +35,7 @@ class Matches extends Component {
                 </tr>
                 {this.props.schedule.results.map(match=> (
                         <tr className={"matches-match"} key={match.id}>
-                            <td>{match.matchday}</td>
+                            <td className={"matches-del"}>{match.matchday}</td>
                             <td className={(match.homeTeam.id == this.props.focusedTeam.id) ? 'match-focusedteam' : null}>{match.homeTeam.name}</td>
                             <td>{match.score.fullTime.homeTeam} - {match.score.fullTime.awayTeam}</td>
                             <td className={(match.awayTeam.id == this.props.focusedTeam.id) ? 'match-focusedteam' : null}>{match.awayTeam.name}</td>
