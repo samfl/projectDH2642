@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const path = require('path');
 const port = process.env.PORT || 5000;
 require('dotenv').config();
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 }
 // Database Configuration
 const mongoDB = process.env.MONGODB_URI || "mongodb://sam:kanye123@ds263368.mlab.com:63368/heroku_hf438kbj";
