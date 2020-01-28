@@ -21,11 +21,11 @@ mongoose
 // Routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
 app.get('/configvars', (req, res) =>{
   res.json(process.env.API_CONFIG)
+});
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // Starts the server and listens on 'port' for connections
