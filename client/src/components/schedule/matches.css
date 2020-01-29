@@ -19,6 +19,13 @@
 .match-focusedteam{
     font-weight: bold;
 }
+.matches-msg{
+  flex: 1;
+}
+.popteams-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
 @media screen and (max-width: 750px) {
   .matches-del {
     display: none;
