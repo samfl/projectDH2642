@@ -129,7 +129,7 @@
   border-radius: 2px;
 }
 .result-team button:hover {
-  border: 2px solid black;
+  box-shadow: 0 0 3px black;
 }
 .result-team p {
   white-space: nowrap;
@@ -138,11 +138,12 @@
   max-width: 90px;
 }
 .result-team p:hover {
+  position: relative;
   overflow: visible;
   max-width: none;
   background-color: #fff;
-  border: 1px solid #333;
-  border-radius: 3px;
+  box-shadow: 0 0 3px black;
+  cursor: default;
 }
 .result-img{
   height: 55px;
